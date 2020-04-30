@@ -77,3 +77,161 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|integer|null: false|
+|shop_id|integer|null: false, foreign_key: true|
+|favorite_id|integer|null: false, foreign_key: true|
+|reservation_id|integer|null: false, foreign_key: true|
+|post_id|integer|null: false, foreign_key: true|
+|credit_id|integer|null: false, foreign_key: true|
+|review_id|integer|null: false, foreign_key: true|
+|post_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- has_many shops
+- has_many reviews
+- has_many credits
+- has_many reservations
+- has_many favorites
+- has_many reviews
+- has_many posts
+- has_many commodities, throuth: :favorites	
+- has_many shops throuth reviews
+
+
+
+## shopsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|price|integer|null: false|
+|region|string|null: false|
+|store_in|string|null: false|
+|take_out|string|null: false|
+|delivery|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
+|image_id|integer|null: false, foreign_key: true|
+|commodity_id|integer|null: false, foreign_key: true|
+|post_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- has_many commodities
+- has_many images
+- has_many reviews
+- has_many posts
+- belongs_to :user
+- belongs_to :reservation
+- has_many users throuth reviews
+
+
+## commoditiesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|price|string|null: false|
+|description|text|
+|user_id|integer|null: false, foreign_key: true|
+|shop_id|integer|null: false, foreign_key: true|
+|image_id|integer|null: false, foreign_key: true|
+|favorite_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- has_many images
+- has_many reservations
+- belongs_to :user
+- belongs_to :shop
+- has_many favorites
+- has_many users throuth favorites
+
+
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|
+|video|string|
+|shop_id|integer|null: false, foreign_key: true|
+|commodity_id|integer|null: false, foreign_key: true|
+|reservation_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- belongs_to :shop
+- belongs_to :commodity
+- belongs_to :reservation
+
+
+## creditsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|credit|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- belongs_to :user
+
+
+## reservationsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|remark|text|
+|user_id|integer|null: false, foreign_key: true|
+|shop_id|integer|null: false, foreign_key: true|
+|commodity_id|integer|null: false, foreign_key: true|
+|image_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- has_many shops
+- has_many reservations
+- belongs_to :user
+- belongs_to :commodity
+
+
+## reviewsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|evaluation|text|null: false|
+|detail|text|
+|user_id|integer|null: false, foreign_key: true|
+|shop_id|integer|null: false, foreign_key: true|
+
+
+### Association
+- belongs_to :user
+- belongs_to :shop
+
+
+## favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|	
+|commodity_id|integer|null: false, foreign_key: true|	
+
+
+### Association
+- belongs_to :user
+- belongs_to :commodity
+
+
+## postsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post|text|
+|user_id|integer|null: false, foreign_key: true|
+|shop_id|integer|null: false, foreign_key: true|
+|image_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to shop
+- has_many images
