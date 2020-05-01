@@ -100,7 +100,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - has_many credits
 - has_many reservations
 - has_many favorites
-- has_many reviews
 - has_many posts
 - has_many commodities, throuth: :favorites	
 - has_many shops throuth reviews
@@ -192,7 +191,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### Association
 - has_many shops
-- has_many reservations
+- has_many images
 - belongs_to :user
 - belongs_to :commodity
 
