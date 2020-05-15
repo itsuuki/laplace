@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,9 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/User/Shop/create', 'ShopController@create');
+Route::get('/User/Shop/edit', 'ShopController@edit');
+Route::get('/User/{$id}', 'UserController@show');
+Route::resource('User', 'UserController');
+Route::resource('Shop', 'ShopController');

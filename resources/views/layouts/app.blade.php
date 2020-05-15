@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8mb4">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -66,15 +66,23 @@
                                     </form>
                                 </div>
                             </li>
+                            <div>
+                            <a class="user-page" href="/User/{{ Auth::user()->id }}">
+                                マイページ
+                            </a>
+                            </div>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    @guest
+    @else
+                        
+    @endguest
 </body>
 </html>

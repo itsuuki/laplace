@@ -38,7 +38,7 @@ class Shop extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'foreign_key');
     }
 
     public function reservation()
