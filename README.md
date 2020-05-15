@@ -234,3 +234,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - belongs_to :user
 - belongs_to shop
 - has_many images
+
+
+
+
+
+<!-- ALTER TABLE shops COLLATE utf8mb4_general_ci -->

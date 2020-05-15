@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function shops()
     {
-        return $this->hasMany('App\Shop');
+        return $this->hasMany('App\Shop', 'published_shop_id');
     }
 
     public function reviews()
