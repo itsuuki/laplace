@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{route('Shop.update', ['shop' => $shop])}}" enctype="multipart/form-data">
+<form method="POST" action="Shop/update" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="file" name="image">
     <input type="file" name="video">
@@ -11,7 +11,7 @@
         </a>
 
         <button type="submit" class="btn btn-primary">
-            登録する
+            更新する
         </button>
 </form>
 </div>

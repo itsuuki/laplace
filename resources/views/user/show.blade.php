@@ -9,11 +9,9 @@
   <a class="shop-new" href="Shop/create">
     店を登録する
   </a>
-  <a class="shop-news" href="Shop/edit">
-    店を編集する
-  </a>
+  
   @foreach ($shops as $shop)
-    <a class="user-shop" href="/Show/{{ $shop->id }}">
+    <a class="user-shop" href="/Shop/{{ $shop->id }}">
         店の詳細
     </a>
   @endforeach

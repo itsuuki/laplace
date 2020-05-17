@@ -10,6 +10,8 @@ use App\Image;
 
 use App\User;
 
+use App\Post;
+
 class PostController extends Controller
 {
     public function index()
@@ -17,9 +19,37 @@ class PostController extends Controller
         $shops = Shop::orderBy('created_at', 'desc')->get();
         $images = Image::all();
         $user = User::all();
-        // echo var_dump($shops);
         return view('post.index', ['shops' => $shops, 'images'=> $images, 'user'=>$user]);
         // return view('post/index');
+    }
+
+    public function create()
+    {
+        $shops = Shop::all();
+        return view('post/create', ['shops' => $shops]);
+    }
+
+    public function store(Request $request)
+    {
+        $post = new Post;
+
+        $image = new Image;
+
+        $post->post = $request->input('post');
+
+        $post->user_id = $request->user()->id;
+
+        $post->shop_id = $request->input('shop_n');
+
+        $post->save();
+
+        $image->image = $request->file('image')->store('public/images');
+
+        $image->post_id = $post->id;
+
+        $image->save();
+
+        return redirect('/home');
     }
 }
 

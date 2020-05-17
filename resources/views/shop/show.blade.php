@@ -6,7 +6,6 @@
             <div class="card">
                 <div class="card-header">一覧</div>
                     <div class="container mt-4">
-                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 {{ $shop->name }}
@@ -16,13 +15,10 @@
                                     {{ $shop->price }}
                                 </p>
                             </div>
+                            <a class="shop-news" href="{{ $shop->id }}/edit">
+                                店を編集する
+                            </a>
                         </div>
-                        @foreach ($images as $image)
-                            <div class="card-bodys">
-                                <img src="{{asset('storage/'. $image->image)}}" width="100px" height="100px">
-                            </div>
-                        @endforeach
-                            
                     </div>
                 </div>
             </div>
