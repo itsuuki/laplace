@@ -1,14 +1,5 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body> -->
-@extends('layouts.app')
+<script src="{{ asset('/js/shop.js') }}" type="text/javascript"></script>
 
-@section('content')
 <form method="POST" action="{{route('Shop.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <label for="name">
@@ -34,7 +25,7 @@
     >
 
     <label for="price">
-      価格
+      平均価格
     </label>
     <input
     id="price"
@@ -58,38 +49,29 @@
     <label for="store_in">
       店内飲食
     </label>
-    <input
-    id="store_in"
-    name="store_in"
-    class="shop-store_in"
-    value="{{ old('store_in') }}"
-    type="text"
-    >
+    <select name="store_in">
+      <option value="あり">あり</option>
+      <option value="なし">なし</option>
+    </select>
 
     <label for="take_out">
       テイクアウト
     </label>
-    <input
-    id="take_out"
-    name="take_out"
-    class="shop-take_out"
-    value="{{ old('take_out') }}"
-    type="text"
-    >
+    <select name="take_out">
+      <option value="あり">あり</option>
+      <option value="なし">なし</option>
+    </select>
 
     <label for="delivery">
       デリバリー
     </label>
-    <input
-    id="delivery"
-    name="delivery"
-    class="shop-delivery"
-    value="{{ old('delivery') }}"
-    type="text"
-    >
+    <select name="delivery">
+      <option value="あり">あり</option>
+      <option value="なし">なし</option>
+    </select>
     
     <label for="datail">
-        紹介文
+        店紹介
     </label>
     <textarea
         id="datail"
@@ -98,7 +80,54 @@
         rows="4"
     >{{ old('datail') }}</textarea>
 
+    <div class="shop-img">
     <input type="file" name="image">
+    </div>
+
+    <div class="a">
+    <div class="b">
+    <div class="com-data" data-index="{#index}">
+    <div class="c">
+    <label for="com-name">
+      商品
+    </label>
+    <input
+    id="com-name"
+    name="com-name"
+    class="com-name"
+    value="{{ old('com-name') }}"
+    type="text"
+    >
+
+    <label for="com-price">
+      金額
+    </label>
+    <input
+    id="com-price"
+    name="com-price"
+    class="com-price"
+    value="{{ old('com-price') }}"
+    type="text"
+    >
+
+    <label for="description">
+        商品紹介
+    </label>
+    <textarea
+        id="description"
+        name="description"
+        class="com-description"
+        rows="4"
+    >{{ old('description') }}</textarea>
+
+    <input type="file" name="image">
+
+    <div class="con">追加</div>
+
+    </div>
+    </div>
+    </div>
+    </div>
 
     <div class="mt-5">
         <a class="btn btn-secondary" href="/">
@@ -111,6 +140,3 @@
 </form>
     </div>
 </div>
-@endsection
-<!-- </body>
-</html> -->

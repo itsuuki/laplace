@@ -70,6 +70,9 @@
                             <a class="user-page" href="/User/{{ Auth::user()->id }}">
                                 マイページ
                             </a>
+                            <a class="post-page" href="/Post/create">
+                                投稿する
+                            </a>
                             </div>
                         @endguest
                     </ul>

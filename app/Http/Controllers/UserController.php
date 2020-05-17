@@ -19,16 +19,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        // $shop_id = $user->find('shop_id');
-        // $shops = intval($id);
-        // $shop = Shop::find('user_id'->$id);
-        // $shop = $user->shop;
         $shops = Shop::where('user_id', $id)->get();
         return view("user.show", ['user' => $user, 'shops'=> $shops]);
-        // foreach ($shops as $shop) {
-        //     $shop = $shop->find("id");
-        //     // echo var_dump($shop);
-        // }
     }
 }
 // , 'shop'=> $shop

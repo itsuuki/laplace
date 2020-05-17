@@ -8,6 +8,8 @@ use App\Shop;
 
 use App\Image;
 
+use App\Commodity;
+
 // use App\User;
 
 // use App\Http\Controllers\Auth;
@@ -30,9 +32,9 @@ class ShopController extends Controller
 
         $image = new Image;
 
-        // $user = new User;
+        $commodity = new Commodity;
 
-        // $user = User::with('shops')->get();
+        // $user = new User;
 
         $value->name = $request->input('name');
 
@@ -52,19 +54,27 @@ class ShopController extends Controller
 
         $value->user_id = $request->user()->id;
 
-        $value->save();
         
-        $image->image = $request->file('image')->store('images');
+        
+        $value->save();
+        $commodity->name = $request->input('name');
+
+        $commodity->price = $request->input('price');
+
+        $commodity->description = $request->input('description');
+        $commodity->shop_id = $value->id;
+        
+        $commodity->save();
+
+        $image->image = $request->file('image')->store('public/images');
         
         $image->shop_id = $value->id;
+
+        $image->commodity_id = $commodity->id;
         
         // $user->shop_id = $value->id;
         
-        $value->shop_id = $image->id;
-
-        // $user->user_id = $request->input('User/id');
-
-        // Auth::user()->shops()->createMany([$request->all()]);
+        // $value->shop_id = $image->id;
 
         // echo var_dump($value);
 
@@ -72,29 +82,30 @@ class ShopController extends Controller
 
         $image->save();
 
+        $commodity->save();
+
+
         // $user->save();
 
-        return view('post/index');
+        return redirect('/home');
     }
 
-    public function show($shop)
+    public function show($id)
     {
-        $shop = Shop::findOrFail($shop_id);
-        return view('shop.show', [
-            'shop' => $shop,
-        ]);
+        // echo var_dump($id);
+        $shop = Shop::findOrFail($id);
+        return view('shop.show', ['shop' => $shop]);
     }
 
-    public function edit($shop_id)
+    public function edit($id)
     {
-        $shop = Shop::findOrFail($shop_id);
-        return view('shop.edit', [
-            'shop' => $shop,
-        ]);
+        $shop = Shop::findOrFail($id);
+        return view('shop.edit', ['shop' => $shop]);
     }
 
-    public function update()
+    public function update($id, Request $request)
     {
+
         return view('shop/index');
     }
 }
