@@ -15,6 +15,9 @@
         店の詳細
     </a>
   @endforeach
+  <a class="shop-new" href="Post/all">
+    投稿一覧
+  </a>
 </body>
 </html>
 <!-- "{{ action('ShopController@show', $shop->id) }}" -->
