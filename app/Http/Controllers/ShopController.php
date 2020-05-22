@@ -103,9 +103,66 @@ class ShopController extends Controller
         return view('shop.edit', ['shop' => $shop]);
     }
 
-    public function update($id, Request $request)
+    public function update(Request $request)
     {
+    
+        $value = Shop::findOrFail($request->id);
+        
+        
+        $value->fill($request->all())->save();
+        // $image = Image::findOrFail($request->id);
+        // echo var_dump($image);
 
-        return view('shop/index');
+        // $commodity = Commodity::findOrFail($id);
+
+        // $user = new User;
+
+        // $value->name = $request->input('name');
+        
+        // $value->price = $request->input('price');
+
+        // $value->region = $request->input('region');
+
+        // $value->photo = $request->input('photo');
+
+        // $value->datail = $request->input('datail');
+
+        // $value->store_in = $request->input('store_in');
+
+        // $value->take_out = $request->input('take_out');
+
+        // $value->delivery = $request->input('delivery');
+
+        // $value->user_id = $request->user()->id;
+        
+        // $value->save();
+
+        // $commodity->name = $request->input('name');
+
+        // $commodity->price = $request->input('price');
+
+        // $commodity->description = $request->input('description');
+
+        // $commodity->shop_id = $value->id;
+        
+        // $commodity->save();
+
+        // $image->image = $request->file('image')->store('public/images');
+        
+        // $image->shop_id = $value->id;
+
+        // $image->commodity_id = $commodity->id;
+        
+        // $value->save();
+
+        // $image->save();
+
+        // $commodity->save();
+
+        // echo var_dump($value);
+        // $shop = Shop::findOrFail($id);
+        // return view('shop.show', ['shop' => $shop]);
+        return redirect('/home');
     }
 }
+// return view('shop.show', ['shop' => $shop]);
