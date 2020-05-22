@@ -22,12 +22,6 @@
         {{ method_field('delete') }}
         <a href="#" data-id="{{ $post->id }}" class="btn btn-danger btn-sm" onclick="deletePost(this);">削除</a>
       </form>
-      <!-- <form method="POST" action="{{ $post->id }}/destroy">
-      {{ csrf_field() }}
-      {{ method_field('delete') }}
-
-          <button class="btn btn-danger">削除する</button>
-      </form> -->
     </div>
   @endforeach
 </div>

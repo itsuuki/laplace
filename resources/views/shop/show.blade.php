@@ -18,6 +18,9 @@
                             <a class="shop-news" href="{{ $shop->id }}/edit">
                                 店を編集する
                             </a>
+                            <a class="review-new" href="{{ route('Review.create', ['shop' => $shop]) }}">
+                                レビューを書く
+                            </a>
                         </div>
                     </div>
                 </div>
