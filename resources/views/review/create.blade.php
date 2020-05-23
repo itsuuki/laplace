@@ -44,6 +44,11 @@
     rows="4"
 >{{ old('detail') }}</textarea>
 
+<!-- <label for="detailaaa">
+{{$shop_id->id}}
+</label> -->
+<input type="hidden" name="id" value="{{$shop_id->id}}">
+
 <a class="btn btn-secondary" href="/">
     キャンセル
 </a>

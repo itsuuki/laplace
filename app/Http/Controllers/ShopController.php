@@ -110,6 +110,8 @@ class ShopController extends Controller
         
         
         $value->fill($request->all())->save();
+        return view('shop.show', ['shop' => $value]);
+        // return redirect('/home');
         // $image = Image::findOrFail($request->id);
         // echo var_dump($image);
 
@@ -162,7 +164,6 @@ class ShopController extends Controller
         // echo var_dump($value);
         // $shop = Shop::findOrFail($id);
         // return view('shop.show', ['shop' => $shop]);
-        return redirect('/home');
     }
 }
 // return view('shop.show', ['shop' => $shop]);

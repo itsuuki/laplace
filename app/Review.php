@@ -13,6 +13,7 @@ class Review extends Model
 
     public function shop()
     {
+        parent::shop();
         return $this->belongsTo('App\Shop');
     }
 
