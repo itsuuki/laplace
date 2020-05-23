@@ -30,7 +30,9 @@ Route::get('/User/{$id}', 'UserController@show');
 Route::get('/Shop/{$id}', 'ShopController@show');
 Route::get('/Shop/{$id}/edit', 'ShopController@edit');
 Route::post('/Shop/update', 'ShopController@update');
-Route::get('/Shop/review/create', 'ReviewController@create');
+Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
+  return view('review.create', ['shop_id'=>$shop_id]);
+});
 Route::get('User/Post/all', 'PostController@all');
 Route::delete('Post/destroy/{$id}', 'PostController@destroy');
 Route::resource('User', 'UserController');

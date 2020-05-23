@@ -26,14 +26,14 @@ class ReviewController extends Controller
         
         $review->detail = $request->input('detail');
         
-        // $review->user_id = $request->user()->id;
+        $review->user_id = $request->user()->id;
         
         // $review->save();
-        $shop = Shop::find($request->id);
-        $review->shop_id = $shop;
+        // echo var_dump($request->id);
+        // $shop = Shop::find($request->id);
+        $review->shop_id = $request->id;
         $review->save();
 
-        // echo var_dump($shop);
 
 
         return redirect('/');
