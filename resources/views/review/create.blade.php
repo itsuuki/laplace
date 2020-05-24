@@ -10,7 +10,7 @@
 
 <form method="POST" action="{{route('Review.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-<div class="wrap">
+<!-- <div class="wrap">
   <span class="rate rate0"></span>
   <span class="rate rate1"></span>
   <span class="rate rate1-5"></span>
@@ -21,17 +21,17 @@
   <span class="rate rate4"></span>
   <span class="rate rate4-5"></span>
   <span class="rate rate5"></span>
-</div>
+</div> -->
 
 <label for="evaluation">
   レビュー評価
 </label>
 <select name="evaluation">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
+  <option value="1">1(よくない)</option>
+  <option value="2">2(あまりよくない)</option>
+  <option value="3">3(普通)</option>
+  <option value="4">4(よい)</option>
+  <option value="5">5(最高)</option>
 </select>
 
 <label for="detail">

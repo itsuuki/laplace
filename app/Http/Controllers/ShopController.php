@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Collection;
+
 use App\Shop;
 
 use App\Image;
 
 use App\Commodity;
+
+use App\Review;
 
 // use App\User;
 
@@ -92,9 +96,11 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        // echo var_dump($id);
         $shop = Shop::findOrFail($id);
-        return view('shop.show', ['shop' => $shop]);
+        $reviews = Review::all();
+        $review = Review::select('evaluation')->get();
+        $review = collect($review)->avg('evaluation');
+        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews]);
     }
 
     public function edit($id)
