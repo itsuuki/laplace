@@ -1,6 +1,14 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script src="{{ asset('/js/shop.js') }}" defer></script>
+</head>
+<body>
+  
 <form method="POST" action="{{url('Shop/update')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <!-- @method('PUT') -->
@@ -12,7 +20,7 @@
         id="name"
         name="name"
         class="shop-name"
-        value="{{ old('name') }}"
+        value="{{ old('name', $shop->name) }}"
         type="text"
     >
 
@@ -23,7 +31,7 @@
     id="photo"
     name="photo"
     class="shop-photo"
-    value="{{ old('photo') }}"
+    value="{{ old('photo', $shop->photo) }}"
     type="text"
     >
 
@@ -34,7 +42,7 @@
     id="price"
     name="price"
     class="shop-name"
-    value="{{ old('name') }}"
+    value="{{ old('price', $shop->price) }}"
     type="text"
     >
 
@@ -45,7 +53,7 @@
     id="region"
     name="region"
     class="shop-region"
-    value="{{ old('region') }}"
+    value="{{ old('region', $shop->region) }}"
     type="text"
     >
 
@@ -81,13 +89,52 @@
         name="datail"
         class="shop-datail"
         rows="4"
-    >{{ old('datail') }}</textarea>
+    >{{ old('datail', $shop->datail) }}</textarea>
 
     <div class="shop-img">
     <input type="file" name="image">
     </div>
+    <div class="com-data" data-index="${index}">
+    <label for="com-name">
+      商品
+    </label>
+    <input
+    id="com-name"
+    name="com-name"
+    class="com-name"
+    value="{{ old('com-name') }}"
+    type="text"
+    >
 
-    <!-- <div class="con">追加</div> -->
+    <label for="com-price">
+      金額
+    </label>
+    <input
+    id="com-price"
+    name="com-price"
+    class="com-price"
+    value="{{ old('com-price') }}"
+    type="text"
+    >
+
+    <label for="description">
+        商品紹介
+    </label>
+    <textarea
+        id="description"
+        name="description"
+        class="com-description"
+        rows="4"
+    >{{ old('description') }}</textarea>
+
+    <div class="con">追加</div>
+
+    </div>
+    </div>
+    </div>
+      <div class="exhibition__detail__des__cou__tag">削除</div>
+    </div>
+    <div class="con">追加</div>
 
 
     <!-- <input type="file" name="image"> -->
@@ -103,4 +150,5 @@
     <input type="hidden" name="id" value="{{$shop->id}}">
 </form>
 </div>
-@endsection
+</body>
+</html>

@@ -325,3 +325,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
     if ($('.exhibition__detail__image__in__fis__out__ind__fil').length == 0) $('.exhibition__detail__image__in__fis').append(buildFileField(fileIndex[0]));
   });
 }); -->
+
+<!-- <meta name="csrf-token" content="{{ csrf_token() }}">
+<script type="text/javascript" src="/js/jquery-3.5.0.tgz.js"></script> 
+<script src="/resource/js/shop.js" defer></script> -->
+
+
+
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script> -->
