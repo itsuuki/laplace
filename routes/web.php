@@ -33,9 +33,15 @@ Route::post('/Shop/update', 'ShopController@update');
 Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
   return view('review.create', ['shop_id'=>$shop_id]);
 });
+// Route::get('/Shop/{shop_id}/reservation/create', function (App\Shop $shop_id) {
+//   return view('reservation.create', ['shop_id'=>$shop_id]);
+// });
+Route::get('/Shop/{shop_id}/Reservation/create', 'ReservationController@create');
 Route::get('User/Post/all', 'PostController@all');
 Route::delete('Post/destroy/{$id}', 'PostController@destroy');
 Route::resource('User', 'UserController');
 Route::resource('Shop', 'ShopController');
 Route::resource('Post', 'PostController');
 Route::resource('Review', 'ReviewController');
+Route::resource('Shop.Reservation', 'ReservationController');
+Route::resource('Reservation', 'ReservationController');

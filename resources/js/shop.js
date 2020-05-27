@@ -55,7 +55,7 @@ $(function(){
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
-  $('.con').on('click', '.c', function(e) {
+  $('.con').on('click', function(e) {
     console.log("ok");
     const targetIndex = $(this).parent().data('index');
     const file = e.target.files[0];
@@ -80,5 +80,9 @@ $(function(){
   });
 });
 // $(function() {
-//   alert('sample');
+//   // alert('sample');
+//   $('.con').on('click', function(e) {
+//     console.log("ok");
+//   });
+//   // console.log("ok");
 // });

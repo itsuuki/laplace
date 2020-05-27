@@ -42,6 +42,9 @@
                             <a class="shop-news" href="{{ $shop->id }}/edit">
                                 店を編集する
                             </a>
+                            <a class="reservation-new" href="{{ $shop->id }}/Reservation/create">
+                                注文する
+                            </a>
                             <a class="review-new" href="{{ $shop->id }}/review/create">
                                 レビューを書く
                             </a>
