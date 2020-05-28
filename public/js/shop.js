@@ -93,51 +93,97 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  var buildFileField = function buildFileField(index) {
-    var html = "<div class=\"com-data\" data-index=\"".concat(index, "\">\n    <label for=\"com-name\">\n      \u5546\u54C1\n    </label>\n    <input\n    id=\"com-name\"\n    name=\"com-name\"\n    class=\"com-name\"\n    value=\"{{ old('com-name') }}\"\n    type=\"text\"\n    >\n\n    <label for=\"com-price\">\n      \u91D1\u984D\n    </label>\n    <input\n    id=\"com-price\"\n    name=\"com-price\"\n    class=\"com-price\"\n    value=\"{{ old('com-price') }}\"\n    type=\"text\"\n    >\n\n    <label for=\"description\">\n        \u5546\u54C1\u7D39\u4ECB\n    </label>\n    <textarea\n        id=\"description\"\n        name=\"description\"\n        class=\"com-description\"\n        rows=\"4\"\n    >{{ old('description') }}</textarea>\n\n    <div class=\"con\">\u8FFD\u52A0</div>\n\n    </div>\n    </div>\n    </div>\n      <div class=\"exhibition__detail__des__cou__tag\">\u524A\u9664</div>\n    </div>");
-    return html;
-  };
-
-  var buildImg = function buildImg(index, url) {
-    var html = "<img data-index=\"".concat(index, "\" src=\"").concat(url, "\" width=\"100px\" height=\"100px\">");
-    return html;
-  };
-
-  var fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  lastIndex = $('.com-data:last').data('index');
-  fileIndex.splice(0, lastIndex);
-  $('.hidden-destroy').hide();
-  $('.con').on('click', function (e) {
-    console.log("ok");
-    var targetIndex = $(this).parent().data('index');
-    var file = e.target.files[0];
-    var blobUrl = window.URL.createObjectURL(file);
-
-    if (img = $("img[data-index=\"".concat(targetIndex, "\"]"))[0]) {
-      img.setAttribute('images', blobUrl);
-    } else {
-      $('.b').append(buildImg(targetIndex, blobUrl));
-      $('.a').append(buildFileField(fileIndex[0]));
-      fileIndex.shift();
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-    }
-  });
-  $('.exhibition__detail__image__in__fis').on('click', '.exhibition__detail__des__cou__tag', function () {
-    var targetIndex = $(this).parent().data('index');
-    var hiddenCheck = $("input[data-index=\"".concat(targetIndex, "\"].hidden-destroy"));
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
-    $(this).parent().remove();
-    $("img[data-index=\"".concat(targetIndex, "\"]")).remove();
-    if ($('.exhibition__detail__image__in__fis__out__ind__fil').length == 0) $('.exhibition__detail__image__in__fis').append(buildFileField(fileIndex[0]));
-  });
-}); // $(function() {
+// $(function(){
+//   const buildFileField = (index)=> {
+//     const html = 
+//     `<div class="a">
+//     <div class="b">
+//     <div class="com-data" data-index="${index}">
+//     <label for="com-name">
+//       商品
+//     </label>
+//     <input
+//     id="com-name"
+//     name="com-name"
+//     class="com-name"
+//     value="{{ old('com-name') }}"
+//     type="text"
+//     >
+//     <label for="com-price">
+//       金額
+//     </label>
+//     <input
+//     id="com-price"
+//     name="com-price"
+//     class="com-price"
+//     value="{{ old('com-price') }}"
+//     type="text"
+//     >
+//     <label for="description">
+//         商品紹介
+//     </label>
+//     <textarea
+//         id="description"
+//         name="description"
+//         class="com-description"
+//         rows="4"
+//     >{{ old('description') }}</textarea>
+//     <div class="con">追加</div>
+//     </div>
+//     </div>
+//     </div>
+//       <div class="exhibition__detail__des__cou__tag">削除</div>
+//     </div>`;
+//     return html;
+//   }
+//   const buildImg = (index, url)=> {
+//     const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+//     return html;
+//   }
+//   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+//   lastIndex = $('.com-data:last').data('index');
+//   fileIndex.splice(0, lastIndex);
+//   $('.hidden-destroy').hide();
+//   $('.con').on('click', function(e) {
+//     console.log("ok");
+//     const targetIndex = $(this).parent().data('index');
+//     const file = e.target.files[0];
+//     const blobUrl = window.URL.createObjectURL(file);
+//     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+//       img.setAttribute('images', blobUrl);
+//     } else {  
+//       $('.b').append(buildImg(targetIndex, blobUrl));
+//       $('.a').append(buildFileField(fileIndex[0]));
+//       fileIndex.shift();
+//       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+//     }
+//   });
+//   $('.exhibition__detail__image__in__fis').on('click', '.exhibition__detail__des__cou__tag', function() {
+//     const targetIndex = $(this).parent().data('index');
+//     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+//     if (hiddenCheck) hiddenCheck.prop('checked', true);
+//     $(this).parent().remove();
+//     $(`img[data-index="${targetIndex}"]`).remove();
+//     if ($('.exhibition__detail__image__in__fis__out__ind__fil').length == 0) $('.exhibition__detail__image__in__fis').append(buildFileField(fileIndex[0]));
+//   });
+// });
+// $(function() {
 //   // alert('sample');
 //   $('.con').on('click', function(e) {
 //     console.log("ok");
 //   });
 //   // console.log("ok");
 // });
+$(document).on("click", ".add", function () {
+  $(this).parent().clone(true).insertAfter($(this).parent());
+});
+$(document).on("click", ".del", function () {
+  var target = $(this).parent();
+
+  if (target.parent().children().length > 1) {
+    target.remove();
+  }
+});
 
 /***/ }),
 

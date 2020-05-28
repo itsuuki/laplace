@@ -94,47 +94,51 @@
     <div class="shop-img">
     <input type="file" name="image">
     </div>
-    <div class="com-data" data-index="${index}">
-    <label for="com-name">
-      商品
-    </label>
-    <input
-    id="com-name"
-    name="com-name"
-    class="com-name"
-    value="{{ old('com-name') }}"
-    type="text"
-    >
+    <!-- <div class="a">
+    <div class="b">
+    <div class="com-data" data-index="#{index}"> -->
+    <div id="input_pluralBox">
+      <div id="input_plural">
+        <label for="com-name">
+          商品
+        </label>
+        <input
+        id="com-name"
+        name="com-name"
+        class="com-name"
+        value="{{ old('com-name') }}"
+        type="text"
+        >
 
-    <label for="com-price">
-      金額
-    </label>
-    <input
-    id="com-price"
-    name="com-price"
-    class="com-price"
-    value="{{ old('com-price') }}"
-    type="text"
-    >
+        <label for="com-price">
+          金額
+        </label>
+        <input
+        id="com-price"
+        name="com-price"
+        class="com-price"
+        value="{{ old('com-price') }}"
+        type="text"
+        >
 
-    <label for="description">
-        商品紹介
-    </label>
-    <textarea
-        id="description"
-        name="description"
-        class="com-description"
-        rows="4"
-    >{{ old('description') }}</textarea>
+        <label for="description">
+            商品紹介
+        </label>
+        <textarea
+            id="description"
+            name="description"
+            class="com-description"
+            rows="4"
+        >{{ old('description') }}</textarea>
 
-    <div class="con">追加</div>
-
+        <!-- <div class="con">追加</div> -->
+        <input type="button" value="＋" class="add pluralBtn">
+        <input type="button" value="－" class="del pluralBtn">
+      </div>
     </div>
+      <!-- <div class="exhibition__detail__des__cou__tag">削除</div> -->
     </div>
-    </div>
-      <div class="exhibition__detail__des__cou__tag">削除</div>
-    </div>
-    <div class="con">追加</div>
+    <!-- <div class="con">追加</div> -->
 
 
     <!-- <input type="file" name="image"> -->

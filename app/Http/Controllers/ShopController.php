@@ -121,7 +121,9 @@ class ShopController extends Controller
         // $image = Image::findOrFail($request->id);
         // echo var_dump($image);
 
-        // $commodity = Commodity::findOrFail($id);
+        $commodity = Commodity::updateOrCreate(
+            
+        );
 
         // $user = new User;
 
