@@ -6,10 +6,10 @@
         店名
     </label>
     <input
-        id="name"
-        name="name"
-        class="shop-name"
-        value="{{ old('name') }}"
+        id="sname"
+        name="sname"
+        class="shop-sname"
+        value="{{ old('sname') }}"
         type="text"
     >
 
