@@ -10,7 +10,7 @@
     {{ csrf_field() }}
 <select name="shop_n">
   @foreach ($shops as $shop)
-    <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+    <option value="{{ $shop->id }}">{{ $shop->sname }}</option>
   @endforeach
 </select>
 <label for="post">

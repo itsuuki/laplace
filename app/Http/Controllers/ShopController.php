@@ -40,7 +40,7 @@ class ShopController extends Controller
 
         // $user = new User;
 
-        $value->name = $request->input('name');
+        $value->sname = $request->input('sname');
 
         $value->price = $request->input('price');
 
@@ -106,28 +106,54 @@ class ShopController extends Controller
     public function edit($id)
     {
         $shop = Shop::findOrFail($id);
-        return view('shop.edit', ['shop' => $shop]);
+        $commodity = Commodity::where('shop_id', $id)->get();
+        $commodities = collect($commodity)->count();
+        // echo var_dump($commodities);
+        return view('shop.edit', ['shop' => $shop, 'commodity' => $commodity, 'commodities' => $commodities]);
     }
 
     public function update(Request $request)
     {
-    
+        $i = 0;
+        // $n = $request->num;
+        // $l = array(intval($request->ids));
+        // $m = $n + $l;
+        // $id = Bill::where('invoice_id', '=', $request->bill_invoice_id)->get();
         $value = Shop::findOrFail($request->id);
         
         
         $value->fill($request->all())->save();
-        return view('shop.show', ['shop' => $value]);
-        // return redirect('/home');
-        // $image = Image::findOrFail($request->id);
-        // echo var_dump($image);
-
-        $commodity = Commodity::updateOrCreate(
+        foreach ($request->num as $val) {
+            // return redirect('/home');
+            // $image = Image::findOrFail($request->id);
+            // $commodity = Commodity::find($request->id);
+            $com = new Commodity;
+            echo var_dump($request->name[$i]);
             
-        );
+            $com->name = $request->name[$i];
+
+            $com->price = $request->price[$i];
+
+            $com->description = $request->description[$i];
+
+            $com->shop_id = $request->id;
+            $com->save();
+        
+            // echo var_dump($value);
+            // $commodity = Commodity::where('shop_id', $id)->get();
+            // foreach ($commodity as $com) {
+                // $com->fill($request->all([$i]))->save();
+            // }
+            $i++;
+        }
+        $reviews = Review::all();
+        $review = Review::select('evaluation')->get();
+        $review = collect($review)->avg('evaluation');
+        return view('shop.show', ['shop' => $value, 'review' => $review, 'reviews' => $reviews]);
 
         // $user = new User;
 
-        // $value->name = $request->input('name');
+        // $value->name = $request->input('name')[$i];
         
         // $value->price = $request->input('price');
 

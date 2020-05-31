@@ -12,7 +12,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <a class="user-shop" href="/Shop/{{ $shop->id }}">
-                                        {{ $shop->name }}
+                                        {{ $shop->sname }}
                                     </a>
                                 </div>
                                 <div class="card-body">

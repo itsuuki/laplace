@@ -32,7 +32,7 @@
                     <div class="container mt-4">
                         <div class="card mb-4">
                             <div class="card-header">
-                                {{ $shop->name }}
+                                {{ $shop->sname }}
                             </div>
                             <div class="card-body">
                                 <p class="card-text">
@@ -41,6 +41,9 @@
                             </div>
                             <a class="shop-news" href="{{ $shop->id }}/edit">
                                 店を編集する
+                            </a>
+                            <a class="commodity-new" href="{{ $shop->id }}/Commodity/create">
+                                商品を追加する
                             </a>
                             <a class="reservation-new" href="{{ $shop->id }}/Reservation/create">
                                 注文する
