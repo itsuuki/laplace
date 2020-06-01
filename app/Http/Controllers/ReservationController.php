@@ -24,7 +24,6 @@ class ReservationController extends Controller
         $commodity = Commodity::where('shop_id', $shop_id)->get();
         $com = $commodity->pluck('id');
         // echo var_dump($com);
-
         $image = Image::where('commodity_id', $com)->get();
         return view('reservation.create', ['image' => $image, 'commodity' => $commodity, 'shop_id' => $shop_id]);
     }

@@ -132,8 +132,8 @@
     <p>
       新規商品数<span id="press-button">1</span>個
     </p>
-    <!-- <div id="input_pluralBox" data-index=1>
-      <div id="input_plural" > -->
+    <div id="input_pluralBox" data-index=1>
+      <div id="input_plural" >
       @for($i = 0 ; $i < 3; $i ++)
           <label for="com-name">
             商品
@@ -170,8 +170,8 @@
         <!-- <div class="con">追加</div> -->
         
         
-        <!-- <input type="button" value="＋" class="add pluralBtn">
-        <input type="button" value="－" class="del pluralBtn"> -->
+        <input type="button" value="＋" class="add pluralBtn">
+        <input type="button" value="－" class="del pluralBtn">
         <input type="hidden" name="num[]">
       </div>
     </div>
