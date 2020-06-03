@@ -51,6 +51,7 @@
         <input type="hidden" name="num[]">
       </div>
     </div>
+    <input type="button" value="aa" class="a">
     <a class="btn btn-secondary" href="{{ action('ShopController@show', $id) }}">
         キャンセル
     </a>

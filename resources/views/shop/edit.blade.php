@@ -96,45 +96,6 @@
     </div>
     
         @foreach ($commodity as $com)
-        <label for="com-name">
-          商品
-        </label>
-        <input
-        id="name"
-        name="name"
-        class="name"
-        value="{{ old('name', $com->name) }}"
-        type="text"
-        >
-
-        <label for="com-price">
-          金額
-        </label>
-        <input
-        id="com-price"
-        name="com-price[]"
-        class="com-price"
-        value="{{ old('com-price', $com->price) }}"
-        type="text"
-        >
-
-        <label for="description">
-            商品紹介
-        </label>
-        <textarea
-            id="description"
-            name="description[]"
-            class="com-description"
-            rows="4"
-        >{{ old('description', $com->description) }}</textarea>
-        @endforeach
-        <!-- <div class="con">追加</div> -->
-    <p>
-      新規商品数<span id="press-button">1</span>個
-    </p>
-    <div id="input_pluralBox" data-index=1>
-      <div id="input_plural" >
-      @for($i = 0 ; $i < 3; $i ++)
           <label for="com-name">
             商品
           </label>
@@ -142,7 +103,7 @@
           id="name"
           name="name[]"
           class="name"
-          value="{{ old('name') }}"
+          value="{{ old('name', $com->name) }}"
           type="text"
           >
 
@@ -153,7 +114,7 @@
           id="price"
           name="price[]"
           class="price"
-          value="{{ old('price') }}"
+          value="{{ old('price', $com->price) }}"
           type="text"
           >
 
@@ -163,30 +124,12 @@
           <textarea
               id="description"
               name="description[]"
-              class="com-description"
+              class="description"
               rows="4"
-          >{{ old('description') }}</textarea>
-        
-        <!-- <div class="con">追加</div> -->
-        
-        
-        <input type="button" value="＋" class="add pluralBtn">
-        <input type="button" value="－" class="del pluralBtn">
-        <input type="hidden" name="num[]">
-      </div>
-    </div>
-   
-    @endfor
-      
-      <!-- <div class="exhibition__detail__des__cou__tag">削除</div> -->
-    </div>
-    <!-- <div class="con">追加</div> -->
+          >{{ old('description', $com->description) }}</textarea>
 
-
-    <!-- <input type="file" name="image"> -->
-    <!-- <input type="file" name="video"> -->
-    <!-- @foreach ($commodity as $com) -->
-        <!-- @endforeach -->
+          <input type="hidden" name="num[]" value="{{$com->id}}">
+        @endforeach
     <div class="mt-5">
     <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
         キャンセル
@@ -196,7 +139,7 @@
     </button>
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     <input type="hidden" name="id" value="{{$shop->id}}">
-    <input type="hidden" name="ids" value="{{$commodities}}">
+    <!-- <input type="hidden" name="ids" value="{{$commodities}}"> -->
 </form>
 </div>
 </body>

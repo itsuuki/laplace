@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $shops = Shop::where('user_id', $id)->get();
-        return view("user.show", ['user' => $user, 'shops'=> $shops]);
+        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id]);
     }
 }
 // , 'shop'=> $shop
