@@ -28,10 +28,10 @@
       平均価格
     </label>
     <input
-    id="price"
-    name="price"
+    id="sprice"
+    name="sprice"
     class="shop-name"
-    value="{{ old('name') }}"
+    value="{{ old('sprice') }}"
     type="text"
     >
 
