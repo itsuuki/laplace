@@ -10,6 +10,8 @@ use App\Commodity;
 
 use App\Shop;
 
+use App\User;
+
 use App\Reservation;
 
 class ReservationController extends Controller
@@ -59,9 +61,25 @@ class ReservationController extends Controller
             array_push($commodities,$commodity);
             array_push($images,$image);
         }
-        // echo var_dump($commodities);
         return view('reservation/index', ['reservations' => $reservations, 'shops' => $shops, 'commodities' => $commodities, 'images' => $images]);
+    }
 
-        // $shop_id = Reservation::select('shop_id')->get();
+    public function index($id)
+    {
+        // return redirect('/home');
+        // echo var_dump($id);
+        $reservations = Reservation::where('shop_id', $id)->get();
+        $user_id = $reservations->pluck('user_id');
+        $users = User::where('id', $user_id)->get();
+        $commodities = array();
+        $images = array();
+        $commodity_id = $reservations->pluck('commodity_id');
+        foreach ($commodity_id as $com_id) {
+            $commodity = Commodity::where('id', $com_id)->get();
+            $image = Image::where('id', $com_id)->get();
+            array_push($commodities,$commodity);
+            array_push($images,$image);
+        }
+        return view('reservation/index', ['reservations' => $reservations, 'users' => $users, 'commodities' => $commodities, 'images' => $images]);
     }
 }

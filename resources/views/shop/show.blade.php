@@ -51,6 +51,9 @@
                             <a class="review-new" href="{{ $shop->id }}/review/create">
                                 レビューを書く
                             </a>
+                            <a class="review-ne" href="{{ $shop->id }}/Reservation">
+                                注文一覧,店
+                            </a>
                             <div>
                             @foreach ($reviews as $rev)
                             {{ $rev->detail }}
