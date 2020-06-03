@@ -40,11 +40,13 @@ Route::get('/Shop/{shop_id}/Reservation/create', 'ReservationController@create')
 Route::get('/Shop/{shop_id}/Commodity/create', 'CommodityController@create');
 Route::get('User/Post/all', 'PostController@all');
 Route::delete('Post/destroy/{$id}', 'PostController@destroy');
+Route::get('User/{$id}/Reservation/show', 'ReservationController@show');
 Route::resource('User', 'UserController');
 Route::resource('Shop', 'ShopController');
 Route::resource('Post', 'PostController');
 Route::resource('Review', 'ReviewController');
 Route::resource('Shop.Reservation', 'ReservationController');
+Route::resource('User.Reservation', 'ReservationController');
 Route::resource('Reservation', 'ReservationController');
 Route::resource('Shop.Commodity', 'CommodityController');
 Route::resource('Commodity', 'CommodityController');

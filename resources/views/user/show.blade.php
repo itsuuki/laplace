@@ -18,6 +18,9 @@
   <a class="shop-new" href="Post/all">
     投稿一覧
   </a>
+  <a class="shop-new" href="{{$id}}/Reservation/show">
+    注文一覧
+  </a>
 </body>
 </html>
 <!-- "{{ action('ShopController@show', $shop->id) }}" -->
