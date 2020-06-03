@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">
-                                        {{ $shop->price }}
+                                        {{ $shop->sprice }}
                                     </p>
                                 </div>
                             </div>

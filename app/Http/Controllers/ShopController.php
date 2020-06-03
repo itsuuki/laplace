@@ -42,7 +42,7 @@ class ShopController extends Controller
 
         $value->sname = $request->input('sname');
 
-        $value->price = $request->input('price');
+        $value->price = $request->input('sprice');
 
         $value->region = $request->input('region');
 
@@ -107,19 +107,15 @@ class ShopController extends Controller
         $value = Shop::findOrFail($request->id);
         $value->fill($request->all())->save();
         foreach ($request->num as $val) {
-            // $com = Commodity::where('shop_id', $request->id)->get();
-            // foreach ($commodity as $com) {
-                // echo var_dump($commodity);
-            // echo var_dump($val);
             $com = Commodity::find($val);
-            $com->name = $request->name[$i][$val];
-            $com->price = $request->price[$i][$val];
-            $com->description = $request->description[$i][$val];
+            // echo var_dump($com);
+            $com->name = $request->name[$i];
+            $com->price = $request->price[$i];
+            $com->description = $request->description[$i];
             $com->user_id = $request->user()->id;
             $com->shop_id = $request->id;
             $com->save();
             $i++;
-            // }
         }
         $reviews = Review::all();
         $review = Review::select('evaluation')->get();

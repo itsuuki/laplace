@@ -35,14 +35,14 @@
     type="text"
     >
 
-    <label for="price">
+    <label for="sprice">
       平均価格
     </label>
     <input
-    id="price"
-    name="price"
+    id="sprice"
+    name="sprice"
     class="shop-name"
-    value="{{ old('price', $shop->price) }}"
+    value="{{ old('sprice', $shop->sprice) }}"
     type="text"
     >
 
@@ -129,16 +129,16 @@
           >{{ old('description', $com->description) }}</textarea>
 
           <input type="hidden" name="num[]" value="{{$com->id}}">
-        @endforeach
-    <div class="mt-5">
-    <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
-        キャンセル
-    </a>
-    <button type="submit" class="btn btn-primary">
-        更新する
-    </button>
+          @endforeach
+          <div class="mt-5">
+            <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
+              キャンセル
+            </a>
+            <button type="submit" class="btn btn-primary">
+              更新する
+            </button>
+            <input type="hidden" name="id" value="{{$shop->id}}">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-    <input type="hidden" name="id" value="{{$shop->id}}">
     <!-- <input type="hidden" name="ids" value="{{$commodities}}"> -->
 </form>
 </div>

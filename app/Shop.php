@@ -9,7 +9,7 @@ class Shop extends Model
     protected $fillable = [
         'sname',
         'region',
-        'price',
+        'sprice',
         'detail',
         'store_in',
         'take_out',
