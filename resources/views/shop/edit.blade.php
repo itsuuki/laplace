@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Document</title>
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
-  <script src="{{ asset('/js/shop.js') }}" defer></script>
+  <script src="{{ asset('/js/delete-com.js') }}" defer></script>
 </head>
 <body>
   
@@ -96,40 +97,46 @@
     </div>
     
         @foreach ($commodity as $com)
-          <label for="com-name">
-            商品
-          </label>
-          <input
-          id="name"
-          name="name[]"
-          class="name"
-          value="{{ old('name', $com->name) }}"
-          type="text"
-          >
+          <div class="oya">
+            <label for="com-name">
+              商品
+            </label>
+            <input
+            id="name"
+            name="name[]"
+            class="name"
+            value="{{ old('name', $com->name) }}"
+            type="text"
+            >
 
-          <label for="com-price">
-            金額
-          </label>
-          <input
-          id="price"
-          name="price[]"
-          class="price"
-          value="{{ old('price', $com->price) }}"
-          type="text"
-          >
+            <label for="com-price">
+              金額
+            </label>
+            <input
+            id="price"
+            name="price[]"
+            class="price"
+            value="{{ old('price', $com->price) }}"
+            type="text"
+            >
 
-          <label for="description">
-              商品紹介
-          </label>
-          <textarea
-              id="description"
-              name="description[]"
-              class="description"
-              rows="4"
-          >{{ old('description', $com->description) }}</textarea>
+            <label for="description">
+                商品紹介
+            </label>
+            <textarea
+                id="description"
+                name="description[]"
+                class="description"
+                rows="4"
+            >{{ old('description', $com->description) }}</textarea>
 
-          <input type="hidden" name="num[]" value="{{$com->id}}">
-          @endforeach
+            <input type="hidden" name="num[]" value="{{$com->id}}">
+
+            <a class="review-ne" id="deleteTarget" data-com-id="{{$com->id}}">
+                削除
+            </a>
+          </div>
+        @endforeach
           <div class="mt-5">
             <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
               キャンセル

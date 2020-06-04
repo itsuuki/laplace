@@ -14,10 +14,6 @@ use App\Commodity;
 
 use App\Review;
 
-// use App\User;
-
-// use App\Http\Controllers\Auth;
-
 class ShopController extends Controller
 {
     public function index()
@@ -37,8 +33,6 @@ class ShopController extends Controller
         $image = new Image;
 
         $commodity = new Commodity;
-
-        // $user = new User;
 
         $value->sname = $request->input('sname');
 
@@ -121,5 +115,15 @@ class ShopController extends Controller
         $review = Review::select('evaluation')->get();
         $review = collect($review)->avg('evaluation');
         return view('shop.show', ['shop' => $value, 'review' => $review, 'reviews' => $reviews]);
+    }
+
+    public function destroy($id)
+    {
+        echo var_dump($id);
+        $post = Commodity::findOrFail($id);
+        $post->delete();
+        $posts = Commodity::all();
+        $images = Image::all();
+        return view('post.all', ['posts' => $posts, 'images'=> $images]);
     }
 }
