@@ -36,42 +36,18 @@ class CommodityController extends Controller
             $review = collect($review)->avg('evaluation');
             return redirect()->route('shop.show', ['$id' => $value, 'shop' => $value, 'review' => $review, 'reviews' => $reviews]);
     }
-        
-        // $collection = collect($request);
-        // // foreach ($request as $val) {
-        // $sorted = $collection->sortByDesc('name')->values();
-        // echo var_dump($sorted);
-        // }
-        public function edit()
-        {
-            return view('shop/index');
-        }
-        
-    // public function beforeFilter(): void {
-        //     parent::beforeFilter();
+    public function edit()
+    {
+        return view('shop/index');
+    }
 
-    //     // Ajax通信の為セキュリティを解除
-    //     $this->Security->unlockedActions = ['fetchDBData'];
-    // }
-
-    // /**
-    //  * 入力されたIDを元にAjaxで名前を取得するpublic関数
-    //  */
-    // public function fetchDBData() {
-        //     // 表示はせずにデータをやりとりする関数なのでView不要の記述
-        //     $this->autoRender = false;
-
-    //     if ($this->RequestHandler->isAjax()) {
-    //         if ($this->request->data) {
-    //             $inputId = Hash::get($this->request->data, 'input_id');
-    //         }
-
-    //         $inputName = $this->Fuga->getFugaName($inputId);
-    //         if (strlen($inputName) === 0) {
-    //             return '※存在しません';
-    //         } else {
-    //             return $inputName;
-    //         }
+    public function destroy($post_id)
+    {
+    // echo var_dump($post_id);
+    $post = Post::findOrFail($post_id);
+    $post->delete();
+    $posts = Post::all();
+    $images = Image::all();
+    return view('post.all', ['posts' => $posts, 'images'=> $images]);
+    }
 }
-    //     }
-    // }
