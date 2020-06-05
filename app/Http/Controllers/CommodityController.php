@@ -41,13 +41,13 @@ class CommodityController extends Controller
         return view('shop/index');
     }
 
-    public function destroy($post_id)
-    {
-    // echo var_dump($post_id);
-    $post = Post::findOrFail($post_id);
-    $post->delete();
-    $posts = Post::all();
-    $images = Image::all();
-    return view('post.all', ['posts' => $posts, 'images'=> $images]);
-    }
+    // public function destroy($post_id)
+    // {
+    // // echo var_dump($post_id);
+    // $post = Post::findOrFail($post_id);
+    // $post->delete();
+    // $posts = Post::all();
+    // $images = Image::all();
+    // return view('post.all', ['posts' => $posts, 'images'=> $images]);
+    // }
 }

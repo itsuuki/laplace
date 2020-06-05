@@ -1,6 +1,7 @@
 $(function(){
   const buildFileField = (index)=> {
-    const html = `<div id="input_plural" class="input_plural[${index}]">
+    const html = `
+    <div id="input_plural" class="input_plural[${index}]">
       <label for="com-name">
         商品
       </label>
@@ -36,6 +37,7 @@ $(function(){
     <input type="button" value="＋" class="add pluralBtn[${index}]">
     <input type="button" value="－" class="del pluralBtn[${index}]">
     <input type="hidden" name="num[${index}]">
+    <input type="file" name="image[${index}]">
     </div>`;
     return html;
   }
@@ -44,7 +46,6 @@ $(function(){
   $(document).on("click", ".add", function() {
     count_value++;
     count_values++;
-    document.getElementById("press-button").innerHTML = count_values;
     var hoge = document.getElementById('input_pluralBox').dataset.index;
     var hoga = hoge.innerHTML = count_value;
     $('#input_pluralBox').append(buildFileField(hoga));
@@ -59,6 +60,9 @@ $(function(){
     });
     $('input[name^=num]').filter(function(index){ 
       $(this).attr('name','num['+index+']') 
+    });
+    $('input[name^=image]').filter(function(index){ 
+      $(this).attr('name','image['+index+']') 
     });
   });
   $(document).on("click", ".del", function() {
@@ -77,6 +81,9 @@ $(function(){
         });
         $('input[name^=num]').filter(function(index){ 
           $(this).attr('name','num['+index+']') 
+        });
+        $('input[name^=image]').filter(function(index){ 
+          $(this).attr('name','image['+index+']') 
         });
       }
   });

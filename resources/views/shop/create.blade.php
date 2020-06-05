@@ -1,4 +1,5 @@
-<script src="{{ asset('/js/shop.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="{{ asset('/js/shop.js') }}" defer></script>
 
 <form method="POST" action="{{route('Shop.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -24,7 +25,7 @@
     type="text"
     >
 
-    <label for="price">
+    <label for="sprice">
       平均価格
     </label>
     <input
@@ -81,52 +82,50 @@
     >{{ old('datail') }}</textarea>
 
     <div class="shop-img">
-    <input type="file" name="image">
+    <input type="file" name="img">
     </div>
 
-    <div class="a">
-    <div class="b">
-    <div class="com-data" data-index="{#index}">
-    <div class="c">
-    <label for="com-name">
-      商品
-    </label>
-    <input
-    id="com-name"
-    name="com-name"
-    class="com-name"
-    value="{{ old('com-name') }}"
-    type="text"
-    >
+    <p>
+      新規商品数<span id="press-button">1</span>個
+    </p>
+    <div id="input_pluralBox" data-index="1">
+      <div id="input_plural" class="input_plural[]">
+          <label for="com-name">
+            商品
+          </label>
+          <input
+          id="name"
+          name="name[]"
+          class="name"
+          value="{{ old('name') }}"
+          type="text"
+          >
 
-    <label for="com-price">
-      金額
-    </label>
-    <input
-    id="com-price"
-    name="com-price"
-    class="com-price"
-    value="{{ old('com-price') }}"
-    type="text"
-    >
+          <label for="com-price">
+            金額
+          </label>
+          <input
+          id="price"
+          name="price[]"
+          class="price"
+          value="{{ old('price') }}"
+          type="text"
+          >
 
-    <label for="description">
-        商品紹介
-    </label>
-    <textarea
-        id="description"
-        name="description"
-        class="com-description"
-        rows="4"
-    >{{ old('description') }}</textarea>
-
-    <input type="file" name="image">
-
-    <div class="con">追加</div>
-
-    </div>
-    </div>
-    </div>
+          <label for="description">
+              商品紹介
+          </label>
+          <textarea
+              id="description"
+              name="description[]"
+              class="com-description"
+              rows="4"
+          >{{ old('description') }}</textarea>
+        <input type="button" value="＋" class="add pluralBtn[]">
+        <input type="button" value="－" class="del pluralBtn[]">
+        <input type="hidden" name="num[]">
+        <input type="file" name="image[]">
+      </div>
     </div>
 
     <div class="mt-5">

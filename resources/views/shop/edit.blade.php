@@ -92,9 +92,17 @@
         rows="4"
     >{{ old('datail', $shop->datail) }}</textarea>
 
-    <div class="shop-img">
-    <input type="file" name="image">
-    </div>
+    @foreach ($image as $img)
+        @if ($shop->id === $img->shop_id)
+            <div class="card-bodys">
+                <img src="storage/app/{{ $img->image }}" width="100px" height="100px">
+            </div>
+        @else
+        <div class="shop-img">
+          <input type="file" name="img">
+        </div>
+        @endif
+    @endforeach
     
         @foreach ($commodity as $com)
           <div class="oya">
@@ -131,11 +139,26 @@
             >{{ old('description', $com->description) }}</textarea>
 
             <input type="hidden" name="num[]" value="{{$com->id}}">
+            <input type="file" name="image[]">
 
             <a class="review-ne" id="deleteTarget" data-com-id="{{$com->id}}">
                 削除
             </a>
           </div>
+          @foreach ($images as $imgs)
+            @foreach ($imgs as $ima)
+              @if ($com->id === $ima->commodity_id)
+              <div class="card-bodys">
+                  <img src="storage/app/{{ $ima->image }}" width="100px" height="100px">
+              </div>
+              @else
+              <div class="shop-img">
+                <input type="file" name="img">
+              </div>
+              @endif
+            @endforeach
+          @endforeach
+          
         @endforeach
           <div class="mt-5">
             <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
