@@ -30,13 +30,11 @@ class ShopController extends Controller
     {
         $value = new Shop;
 
-        $image = new Image;
-
-        $commodity = new Commodity;
+        $i = 0;
 
         $value->sname = $request->input('sname');
 
-        $value->price = $request->input('sprice');
+        $value->sprice = $request->input('sprice');
 
         $value->region = $request->input('region');
 
@@ -54,26 +52,46 @@ class ShopController extends Controller
         
         $value->save();
 
-        $commodity->name = $request->input('name');
+        $img = new Image;
 
-        $commodity->price = $request->input('price');
+        $img->image = $request->img->store('public/images');
 
-        $commodity->description = $request->input('description');
-        $commodity->shop_id = $value->id;
+        $img->shop_id = $value->id;
+
+        $img->save();
+
+        // $commodity->name = $request->input('name');
+
+        // $commodity->price = $request->input('price');
+
+        // $commodity->description = $request->input('description');
+        // $commodity->shop_id = $value->id;
         
-        $commodity->save();
+        // $commodity->save();
 
-        $image->image = $request->file('image')->store('public/images');
-        
-        $image->shop_id = $value->id;
+        foreach ($request->num as $val) {
+            $com = new Commodity;
+            $image = new Image;
+            echo var_dump($request->image[$i]);
+            $com->name = $request->name[$i];
+            $com->price = $request->price[$i];
+            $com->description = $request->description[$i];
+            $com->user_id = $request->user()->id;
+            $com->shop_id = $value->id;
+            $com->save();
+            // $image->image = $request->input('images')->store('public/images');
+            $image->image = $request->image[$i]->store('public/images');
+            // $image->shop_id = $value->id;
+            $image->commodity_id = $com->id;
+            $image->save();
+            $i++;
+        }
 
-        $image->commodity_id = $commodity->id;
 
-        $value->save();
+        // $value->save();
 
-        $image->save();
 
-        $commodity->save();
+        // $commodity->save();
 
         return redirect('/home');
     }
@@ -91,8 +109,15 @@ class ShopController extends Controller
     {
         $shop = Shop::findOrFail($id);
         $commodity = Commodity::where('shop_id', $id)->get();
+        $image = Image::where('shop_id', $id)->get();
+        $images = array();
+        $commodity_id = $commodity->pluck('id');
+        foreach ($commodity_id as $com_id) {
+            $img = Image::where('id', $com_id)->get();
+            array_push($images,$img);
+        }
         $commodities = collect($commodity)->count();
-        return view('shop.edit', ['shop' => $shop, 'commodity' => $commodity, 'commodities' => $commodities]);
+        return view('shop.edit', ['shop' => $shop, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'images' => $images]);
     }
 
     public function update(Request $request)
@@ -100,8 +125,13 @@ class ShopController extends Controller
         $i = 0;
         $value = Shop::findOrFail($request->id);
         $value->fill($request->all())->save();
+        $img = Image::find($request->id);
+        $img->image = $request->img->store('public/images');
+        $img->shop_id = $value->id;
+        $img->save();
         foreach ($request->num as $val) {
             $com = Commodity::find($val);
+            $image= Image::find($val);
             // echo var_dump($com);
             $com->name = $request->name[$i];
             $com->price = $request->price[$i];
@@ -109,6 +139,10 @@ class ShopController extends Controller
             $com->user_id = $request->user()->id;
             $com->shop_id = $request->id;
             $com->save();
+            $image->image = $request->image[$i]->store('public/images');
+            $image->shop_id = $value->id;
+            $image->commodity_id = $com->id;
+            $image->save();
             $i++;
         }
         $reviews = Review::all();
@@ -119,7 +153,7 @@ class ShopController extends Controller
 
     public function destroy($id)
     {
-        echo var_dump($id);
+        // echo var_dump($id);
         $post = Commodity::findOrFail($id);
         $post->delete();
         $posts = Commodity::all();
