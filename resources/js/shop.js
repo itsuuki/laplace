@@ -46,6 +46,7 @@ $(function(){
   $(document).on("click", ".add", function() {
     count_value++;
     count_values++;
+    document.getElementById("press-button").innerHTML = count_values;
     var hoge = document.getElementById('input_pluralBox').dataset.index;
     var hoga = hoge.innerHTML = count_value;
     $('#input_pluralBox').append(buildFileField(hoga));
