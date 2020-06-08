@@ -1,5 +1,6 @@
 @extends('layouts.app')
-<link href="{{ asset('css/post.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('css/post.css') }}" rel="stylesheet"> -->
+<link rel="stylesheet" href="{{ mix('css/post.css') }}">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

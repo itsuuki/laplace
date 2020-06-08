@@ -16,3 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
 mix.js('resources/js/shop.js', 'public/js');
 mix.js('resources/js/delete-com.js', 'public/js');
 mix.js('resources/js/price.js', 'public/js');
+mix.sass('resources/sass/shop.scss', 'public/css');
+mix.sass('resources/sass/post.scss', 'public/css');
