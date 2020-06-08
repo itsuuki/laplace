@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+<link rel="stylesheet" href="{{ mix('css/post.css') }}">
+@section('content')
 <form method="POST" action="{{route('Post.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
 <select name="shop_n">
@@ -30,9 +25,8 @@
     キャンセル
 </a>
 
-<button type="submit" class="btn btn-primary">
-    登録する
+<button type="submit" class="post-btn">
+<span>やりましたよ必死に!</span><span>必死でやりましたか？</span>
 </button>
 </form>
-</body>
-</html>
+@endsection

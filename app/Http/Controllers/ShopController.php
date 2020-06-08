@@ -14,6 +14,8 @@ use App\Commodity;
 
 use App\Review;
 
+use App\User;
+
 class ShopController extends Controller
 {
     public function index()
@@ -102,7 +104,8 @@ class ShopController extends Controller
         $reviews = Review::all();
         $review = Review::select('evaluation')->get();
         $review = collect($review)->avg('evaluation');
-        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews]);
+        $users = User::all();
+        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
     }
 
     public function edit($id)

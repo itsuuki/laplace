@@ -10,6 +10,8 @@ use App\Image;
 
 use App\User;
 
+use App\Post;
+
 class HomeController extends Controller
 {
     public function index()
