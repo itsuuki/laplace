@@ -113,8 +113,9 @@ class ShopController extends Controller
         $images = array();
         $commodity_id = $commodity->pluck('id');
         foreach ($commodity_id as $com_id) {
-            $img = Image::where('id', $com_id)->get();
+            $img = Image::where('commodity_id', $com_id)->get();
             array_push($images,$img);
+            // echo var_dump(Image::where('id', $com_id)->get());
         }
         $commodities = collect($commodity)->count();
         return view('shop.edit', ['shop' => $shop, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'images' => $images]);

@@ -152,9 +152,10 @@
                   <img src="storage/app/{{ $ima->image }}" width="100px" height="100px">
               </div>
               @else
-              <div class="shop-img">
+              <!-- <div class="shop-img">
                 <input type="file" name="img">
-              </div>
+              </div> -->
+              <!-- {{$com->name}} -->
               @endif
             @endforeach
           @endforeach

@@ -16,11 +16,11 @@ class PostController extends Controller
 {
     public function index()
     {
-        $shops = Shop::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $shops = Shop::all();
         $images = Image::all();
         $user = User::all();
-        return view('post.index', ['shops' => $shops, 'images'=> $images, 'user'=>$user]);
-        // return view('post/index');
+        return view('post.index', ['posts' => $posts, 'shops' => $shops, 'images'=> $images, 'user'=>$user]);
     }
 
     public function create()
