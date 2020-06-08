@@ -4438,6 +4438,7 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  font-size: 15px;
 }
 
 .nav-link:hover,
@@ -4544,9 +4545,15 @@ input[type=button].btn-block {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.125rem;
+  /* font-size: 1.125rem; */
+  font-size: 40px;
   line-height: inherit;
   white-space: nowrap;
+  color: white;
+  font-weight:1500;
+  /* font-family: 'Homemade Apple', cursive; */
+  /* font-family: 'Londrina Shadow', cursive; */
+  font-family: 'Kaushan Script', cursive;
 }
 
 .navbar-brand:hover,
@@ -7043,7 +7050,16 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #fff !important;
+  /* background:radial-gradient(#DB245B, #F2D8DF); */
+  color: #fff;
+  /* background-color: #fff !important; */
+  /* background: -moz-linear-gradient(65deg, #F13F79, #FFC778); 
+  background: -webkit-linear-gradient(65deg, #F13F79, #FFC778); 
+  background: linear-gradient(180deg, #F13F79, #FFC778);  */
+  /* font-weight:bold;
+	color: transparent;
+	background: repeating-linear-gradient(0deg, #C62828 0.1em, #EF5350 0.2em, #FFEBEE 0.3em, #EF5350 0.4em, #C62828 0.5em); 
+	-webkit-background-clip: text; */
 }
 
 .bg-transparent {

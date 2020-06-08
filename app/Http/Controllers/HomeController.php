@@ -14,13 +14,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $shops = Shop::orderBy('created_at', 'desc')->get();
-        $user = User::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $shops = Shop::all();
         $images = Image::all();
-        // $id = Shop::select('id')->get();
-        // $images = Image::whereIn('shop_id', $id);
-        // echo var_dump($id);
-        // echo var_dump($images);
-        return view('post.index', ['shops' => $shops, 'images'=> $images, 'user'=>$user]);
+        $user = User::all();
+        return view('post.index', ['posts' => $posts, 'shops' => $shops, 'images'=> $images, 'user'=>$user]);
     }
 }

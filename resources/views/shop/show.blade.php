@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">一覧</div>
                 <div class="wrap">
                     @if ($review === 0)
                     <span class="rate rate0"></span>
