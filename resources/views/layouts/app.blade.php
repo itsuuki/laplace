@@ -12,17 +12,19 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/shop.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
 
 
 
 
     <!-- Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ mix('css/post.css') }}"> -->
 </head>
 <body>
     <div id="app">
@@ -54,11 +56,16 @@
                                 </li>
                             @endif
                         @else
-                        <form method="GET" action="{{route('home.search')}}" enctype="multipart/form-data">
+                        <!-- <form method="GET" action="{{route('home.search')}}" enctype="multipart/form-data">
                             <div class="form-group">
                             <input type="search" class="form-control" name="search"  value="{{request('search')}}" placeholder="キーワードを入力">
                             </div>
                             <input type="submit" value="検索" class="btn btn-info">
+                        </form> -->
+                        <form class="search-container" method="GET" action="{{route('home.search')}}" enctype="multipart/form-data">
+                            <input id="search-box" type="text" class="search-box" name="search" value="{{request('search')}}" />
+                            <label for="search-box"><span class="fa fa-search search-icon"></span></label>
+                            <input type="submit" id="search-submit" />
                         </form>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
