@@ -8,6 +8,7 @@
             <!-- <div class="card"> -->
             @guest
             @else
+
                 <!-- <div class="card-header">一覧</div> -->
                     <!-- <div class="container mt-4"> -->
                 @foreach ($posts as $post)
@@ -35,6 +36,9 @@
                             @endforeach
                         </div>
                 @endforeach
+                <div class="d-flex justify-content-center ">
+                  
+                </div>
             @endguest
                     <!-- </div> -->
                 <!-- </div> -->

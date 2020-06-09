@@ -68,6 +68,15 @@ class PostController extends Controller
         $images = Image::all();
         return view('post.all', ['posts' => $posts, 'images'=> $images]);
     }
+
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+        $query = Shop::all();
+        $query->where('sname','like','%'.$keyword.'%');
+        $shops = $query->get();
+        echo var_dump($shops);
+
+
+    }
 }
 
-// with('Shop:name')->get();
