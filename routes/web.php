@@ -27,10 +27,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/User/Shop/create', 'ShopController@create');
 Route::get('/User/Shop/edit', 'ShopController@edit');
 Route::get('/User/{$id}', 'UserController@show');
-Route::get('/Shop/{$id}', 'ShopController@show')->name('shop.show');;
+Route::get('/Shop/{$id}', 'ShopController@show')->name('shop.show');
 Route::get('/Shop/{$id}/edit', 'ShopController@edit');
 Route::post('/Shop/update', 'ShopController@update');
 Route::get('/Shop', 'ShopController@destroy');
+Route::get('/Home/search', 'HomeController@search')->name('home.search');;;
 Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
   return view('review.create', ['shop_id'=>$shop_id]);
 });

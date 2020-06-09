@@ -54,6 +54,12 @@
                                 </li>
                             @endif
                         @else
+                        <form method="GET" action="{{route('home.search')}}" enctype="multipart/form-data">
+                            <div class="form-group">
+                            <input type="search" class="form-control" name="search"  value="{{request('search')}}" placeholder="キーワードを入力">
+                            </div>
+                            <input type="submit" value="検索" class="btn btn-info">
+                        </form>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

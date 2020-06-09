@@ -1,3 +1,9 @@
+.post-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .post-btn {
   position: relative;
   perspective: 300px;
@@ -40,5 +46,14 @@
 .post-btn:hover span:nth-child(2) {
   background-color: #333;
   transform: rotateX(-90deg);
+}
+
+.po-cal {
+  color: black;
+}
+
+.pos-detl {
+  width: 60vw;
+  height: 40vh;
 }
 

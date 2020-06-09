@@ -3,30 +3,33 @@
 @section('content')
 <form method="POST" action="{{route('Post.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-<select name="shop_n">
-  @foreach ($shops as $shop)
-    <option value="{{ $shop->id }}">{{ $shop->sname }}</option>
-  @endforeach
-</select>
-<label for="post">
-    投稿内容
-</label>
-<textarea
-    id="post"
-    name="post"
-    class="post"
-    rows="4"
->{{ old('post') }}</textarea>
+  <div class="post-top">
+    お店選択<select name="shop_n">
+      @foreach ($shops as $shop)
+        <option value="{{ $shop->id }}">{{ $shop->sname }}</option>
+      @endforeach
+    </select>
+    <label for="post">
+        投稿内容
+    </label>
+    <textarea
+        id="post"
+        name="post"
+        class="pos-detl"
+        rows="4"
+    >{{ old('post') }}</textarea>
 
-<input type="file" name="image">
+    <input type="file" name="image">
 
-<div class="mt-5">
-<a class="btn btn-secondary" href="/">
-    キャンセル
-</a>
+    <div class="mt-5">
+      <a class="po-cal" href="/">
+          キャンセル
+      </a>
 
-<button type="submit" class="post-btn">
-<span>やりましたよ必死に!</span><span>必死でやりましたか？</span>
-</button>
+      <button type="submit" class="post-btn">
+        <span>やりましたよ必死に!</span><span>必死でやりましたか？</span>
+      </button>
+    </div>
+  </div>
 </form>
 @endsection

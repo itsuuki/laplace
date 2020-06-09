@@ -22,4 +22,16 @@ class HomeController extends Controller
         $user = User::all();
         return view('post.index', ['posts' => $posts, 'shops' => $shops, 'images'=> $images, 'user'=>$user]);
     }
+
+    public function search(Request $request){
+        $keyword = $request->input('search');
+        // $query = Shop::all();
+        $query = Shop::query();
+        $shop = $query->where('sname','like', '%' .$keyword. '%')->get();
+        echo var_dump($shop);
+
+        // $shops = $query->get();
+
+
+    }
 }
