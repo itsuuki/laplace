@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function shops()
     {
-        return $this->hasMany('App\Shop', 'published_shop_id');
+        return $this->hasMany('App\Shop', 'favorites', 'user_id', 'shop_id')->withTimestamps();
     }
 
     public function reviews()
