@@ -24,6 +24,8 @@ class favoriteController extends Controller
         return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
     }
 
+
+
 public function destroy(Shop $shop)
     {
         $shop->users()->detach(Auth::id());
