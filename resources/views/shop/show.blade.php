@@ -39,6 +39,18 @@
                                 <p class="card-text">
                                     {{ $shop->sprice }}
                                 </p>
+                        <div class="col-md-3">
+                            <form action="{{ route('unfavorites', $shop) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <form action="{{ route('favorites', $shop) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                            </form>
+                        </div>
                                 <div class="wrapper">
                                     <a class="reservation-new" href="{{ $shop->id }}/Reservation/create">
                                         注文する

@@ -37,9 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // public function shops()
+    // {
+    //     return $this->hasMany('App\Shop', 'published_shop_id')->withTimestamps();
+    // }
+
     public function shops()
     {
-        return $this->hasMany('App\Shop', 'published_shop_id');
+        return $this->hasMany('App\Shop', 'favorites', 'user_id', 'shop_id')->withTimestamps();
     }
 
     public function reviews()
@@ -57,9 +62,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Reservation');
     }
 
-    // public function commodities()
+    // public function favorites()
     // {
-    //     return $this->belongsToMany('App\commodity');
+    //     return $this->belongsToMany('App\Shop', 'favorite', 'user_id', 'shop_id')->withTimestamps();
     // }
 
 }
