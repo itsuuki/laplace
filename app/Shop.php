@@ -36,9 +36,9 @@ class Shop extends Model
         return $this->hasMany('App\Post');
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User', 'favorites', 'shop_id', 'user_id');
+        return $this->belongsTo('App\User', 'foreign_key');
     }
 
     public function reservation()
