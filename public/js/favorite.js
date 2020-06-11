@@ -81,60 +81,44 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/delete-com.js":
-/*!************************************!*\
-  !*** ./resources/js/delete-com.js ***!
-  \************************************/
+/***/ "./resources/js/favorite.js":
+/*!**********************************!*\
+  !*** ./resources/js/favorite.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  $('#deleteTarget').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var comID = clickEle.attr('data-com-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Shop/' + comID,
-        type: 'POST',
-        data: {
-          'id': comID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
+  $('#cre-fav').on('click', function () {
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/favorite',
+      type: 'POST',
+      data: {
+        'id': comID,
+        '_method': 'DELETE'
+      }
+    });
   });
 });
 
 /***/ }),
 
-/***/ 2:
-/*!******************************************!*\
-  !*** multi ./resources/js/delete-com.js ***!
-  \******************************************/
+/***/ 4:
+/*!****************************************!*\
+  !*** multi ./resources/js/favorite.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\delete-com.js */"./resources/js/delete-com.js");
+module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\favorite.js */"./resources/js/favorite.js");
 
 
 /***/ })

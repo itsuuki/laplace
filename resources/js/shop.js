@@ -9,7 +9,7 @@ $(function(){
       id="name"
       name="name[${index}]"
       class="name {{ $errors->has('name[${index}]') ? 'is-invalid' : '' }}"
-      value=""
+      value="{{ old('name[${index}]') }}"
       type="text"
       >
 
@@ -20,7 +20,7 @@ $(function(){
       id="price"
       name="price[${index}]"
       class="price {{ $errors->has('price[${index}]') ? 'is-invalid' : '' }}"
-      value=""
+      value="{{ old('price[${index}]') }}"
       type="text"
       >
 
@@ -32,7 +32,7 @@ $(function(){
           name="description[${index}]"
           class="com-description"
           rows="4"
-      ></textarea>
+      >{{ old('description[${index}]') }}</textarea>
 
     <input type="button" value="＋" class="add pluralBtn[${index}]">
     <input type="button" value="－" class="del pluralBtn[${index}]">

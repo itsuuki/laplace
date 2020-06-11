@@ -112,7 +112,7 @@
           id="name"
           name="name[]"
           class="name {{ $errors->has('name[]') ? 'is-invalid' : '' }}"
-          value=""
+          value="{{ old('name[]') }}"
           type="text"
           >
           
@@ -124,7 +124,7 @@
           id="price"
           name="price[]"
           class="price {{ $errors->has('price[]') ? 'is-invalid' : '' }}"
-          value=""
+          value="{{ old('price[]') }}"
           type="text"
           >
           
@@ -137,7 +137,7 @@
               name="description[]"
               class="com-description"
               rows="4"
-          ></textarea>
+          >{{ old('description[]') }}</textarea>
         <input type="button" value="＋" class="add pluralBtn[]">
         <input type="button" value="－" class="del pluralBtn[]">
         <input type="hidden" name="num[]">

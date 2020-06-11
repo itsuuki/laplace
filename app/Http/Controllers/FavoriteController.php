@@ -17,11 +17,12 @@ class favoriteController extends Controller
     {
         // echo var_dump($shop->users()->attach(Auth::id()));
         $shop->users()->attach(Auth::id());
-        $reviews = Review::all();
-        $review = Review::select('evaluation')->get();
-        $review = collect($review)->avg('evaluation');
-        $users = User::all();
-        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
+        // $reviews = Review::all();
+        // $review = Review::select('evaluation')->get();
+        // $review = collect($review)->avg('evaluation');
+        // $users = User::all();
+        // return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
+        return back();
     }
 
 
@@ -29,10 +30,11 @@ class favoriteController extends Controller
 public function destroy(Shop $shop)
     {
         $shop->users()->detach(Auth::id());
-        $reviews = Review::all();
-        $review = Review::select('evaluation')->get();
-        $review = collect($review)->avg('evaluation');
-        $users = User::all();
-        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
+        // $reviews = Review::all();
+        // $review = Review::select('evaluation')->get();
+        // $review = collect($review)->avg('evaluation');
+        // $users = User::all();
+        // return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
+        return back();
     }
 }

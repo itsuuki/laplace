@@ -1,7 +1,6 @@
 $(function() {
   $('#deleteTarget').on('click', function() {
     var deleteConfirm = confirm('削除してよろしいでしょうか？');
-    console.log("ok");
     if(deleteConfirm == true) {
       var clickEle = $(this)
       var comID = clickEle.attr('data-com-id');
