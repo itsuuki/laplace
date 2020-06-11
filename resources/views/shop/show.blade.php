@@ -1,6 +1,8 @@
 @extends('layouts.app')
 <!-- <link rel="stylesheet" href="{{ asset('css/review.css') }}"> -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="{{ mix('css/shop.css') }}">
+<script src="{{ asset('/js/favoirte.js') }}" defer></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 @section('content')
 <div class="container">
@@ -51,7 +53,7 @@
                                 <div class="col-md-3">
                                     <form action="{{ route('favorites', $shop) }}" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="submit" value="&#xf164;いいね" class="fa fa-thumbs-up">
+                                        <input type="submit" value="&#xf164;いいね" class="fa fa-thumbs-up" id="cre-fav">
                                     </form>
                                 </div>
                                 @endif
