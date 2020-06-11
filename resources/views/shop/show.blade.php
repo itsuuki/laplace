@@ -1,6 +1,7 @@
 @extends('layouts.app')
 <!-- <link rel="stylesheet" href="{{ asset('css/review.css') }}"> -->
 <link rel="stylesheet" href="{{ mix('css/shop.css') }}">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -39,18 +40,21 @@
                                 <p class="card-text">
                                     {{ $shop->sprice }}
                                 </p>
+                                @if($shop->users()->where('user_id', Auth::id())->exists())
                                 <div class="col-md-3">
                                     <form action="{{ route('unfavorites', $shop) }}" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                                        <input type="submit" value="&#xf164;いいね取り消す" class="fa fa-thumbs-up">
                                     </form>
                                 </div>
+                                @else
                                 <div class="col-md-3">
                                     <form action="{{ route('favorites', $shop) }}" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                                        <input type="submit" value="&#xf164;いいね" class="fa fa-thumbs-up">
                                     </form>
                                 </div>
+                                @endif
                                 <div class="wrapper">
                                     <a class="reservation-new" href="{{ $shop->id }}/Reservation/create">
                                         注文する

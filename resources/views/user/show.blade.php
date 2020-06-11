@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
   <a class="shop-new" href="Shop/create">
     店を登録する
   </a>
@@ -21,6 +15,4 @@
   <a class="shop-new" href="{{$id}}/Reservation/show">
     注文一覧
   </a>
-</body>
-</html>
-<!-- "{{ action('ShopController@show', $shop->id) }}" -->
+@endsection

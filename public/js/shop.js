@@ -95,7 +95,7 @@
 
 $(function () {
   var buildFileField = function buildFileField(index) {
-    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      ></textarea>\n\n    <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[").concat(index, "]\">\n    <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[").concat(index, "]\">\n    <input type=\"hidden\" name=\"num[").concat(index, "]\">\n    <input type=\"file\" name=\"image[").concat(index, "]\">\n    </div>");
+    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name {{ $errors->has('name[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price {{ $errors->has('price[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      ></textarea>\n\n    <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[").concat(index, "]\">\n    <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[").concat(index, "]\">\n    <input type=\"hidden\" name=\"num[").concat(index, "]\">\n    <input type=\"file\" name=\"image[").concat(index, "]\">\n    </div>");
     return html;
   };
 
@@ -145,6 +145,9 @@ $(function () {
         $(this).attr('name', 'image[' + index + ']');
       });
     }
+  });
+  $(document).on("click", ".backg", function () {
+    $(".py-4").css("color", "#0000FF");
   });
 });
 

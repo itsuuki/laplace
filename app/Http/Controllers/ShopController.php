@@ -30,6 +30,23 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'sname' => 'required|max:50',
+            'sprice' => 'required|numeric',
+            'region' => 'required|max:100',
+            'datail' => 'required|max:200',
+            'photo' => 'required | numeric | digits_between:8,11',
+            
+            // 'image' => 'required',
+        ],
+        [
+            'sname.required' => '店の名前は必須です。',
+            'sprice.required' => '平均金額は必須です。',
+            'region.required' => '住所は必須です。',
+            'datail.required' => '紹介文は必須です。',
+            'photo.required' => '電話番号は必須です。',
+            
+        ]);
         $value = new Shop;
 
         $i = 0;
@@ -54,13 +71,15 @@ class ShopController extends Controller
         
         $value->save();
 
-        $img = new Image;
+        if ($request->img !== null) {
+            $img = new Image;
 
-        $img->image = $request->img->store('public/images');
+            $img->image = $request->img->store('public/images');
 
-        $img->shop_id = $value->id;
+            $img->shop_id = $value->id;
 
-        $img->save();
+            $img->save();
+        }
 
         // $commodity->name = $request->input('name');
 
@@ -72,6 +91,14 @@ class ShopController extends Controller
         // $commodity->save();
 
         foreach ($request->num as $val) {
+            $request->validate([
+                `name[$i]` => 'required|max:50',
+                `price[$i]` => 'required|numeric',
+            ],
+            [
+                `name[$i].required` => '商品名は必須です。',
+                `price[$i].required` => '金額は必須です。',
+            ]);
             $com = new Commodity;
             $image = new Image;
             echo var_dump($request->image[$i]);
@@ -81,19 +108,13 @@ class ShopController extends Controller
             $com->user_id = $request->user()->id;
             $com->shop_id = $value->id;
             $com->save();
-            // $image->image = $request->input('images')->store('public/images');
-            $image->image = $request->image[$i]->store('public/images');
-            // $image->shop_id = $value->id;
-            $image->commodity_id = $com->id;
-            $image->save();
+            if ($request->img !== null) {
+                $image->image = $request->image[$i]->store('public/images');
+                $image->commodity_id = $com->id;
+                $image->save();
+            }
             $i++;
         }
-
-
-        // $value->save();
-
-
-        // $commodity->save();
 
         return redirect('/home');
     }

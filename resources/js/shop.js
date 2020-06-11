@@ -8,7 +8,7 @@ $(function(){
       <input
       id="name"
       name="name[${index}]"
-      class="name"
+      class="name {{ $errors->has('name[${index}]') ? 'is-invalid' : '' }}"
       value=""
       type="text"
       >
@@ -19,7 +19,7 @@ $(function(){
       <input
       id="price"
       name="price[${index}]"
-      class="price"
+      class="price {{ $errors->has('price[${index}]') ? 'is-invalid' : '' }}"
       value=""
       type="text"
       >
@@ -87,5 +87,8 @@ $(function(){
           $(this).attr('name','image['+index+']') 
         });
       }
+  });
+  $(document).on("click", ".backg", function() {
+    $(".py-4").css("color", "#0000FF");
   });
 });

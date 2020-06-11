@@ -31,6 +31,13 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'post' => 'required|max:200',
+            // 'image' => 'required',
+        ],
+        [
+            'post.required' => '投稿内容は必須です。',
+        ]);
         $post = new Post;
 
         $image = new Image;
@@ -43,11 +50,13 @@ class PostController extends Controller
 
         $post->save();
 
-        $image->image = $request->file('image')->store('public/images');
+        if ($request->image !== null) {
+            $image->image = $request->file('image')->store('public/images');
 
-        $image->post_id = $post->id;
+            $image->post_id = $post->id;
 
-        $image->save();
+            $image->save();
+        }
 
         return redirect('/home');
     }

@@ -1,18 +1,29 @@
+@extends('layouts.app')
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
 <script src="{{ asset('/js/shop.js') }}" defer></script>
-
+@section('content')
 <form method="POST" action="{{route('Shop.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
+    @if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	  @endif
     <label for="name">
         店名
     </label>
     <input
         id="sname"
         name="sname"
-        class="shop-sname"
+        class="shop-sname {{ $errors->has('sname') ? 'is-invalid' : '' }}"
         value="{{ old('sname') }}"
         type="text"
     >
+   
 
     <label for="photo">
       電話番号  
@@ -20,10 +31,11 @@
     <input
     id="photo"
     name="photo"
-    class="shop-photo"
+    class="shop-photo {{ $errors->has('photo') ? 'is-invalid' : '' }}"
     value="{{ old('photo') }}"
     type="text"
     >
+    
 
     <label for="sprice">
       平均価格
@@ -31,10 +43,11 @@
     <input
     id="sprice"
     name="sprice"
-    class="shop-name"
+    class="shop-sprice {{ $errors->has('sprice') ? 'is-invalid' : '' }}"
     value="{{ old('sprice') }}"
     type="text"
     >
+    
 
     <label for="region">
       地域
@@ -42,10 +55,11 @@
     <input
     id="region"
     name="region"
-    class="shop-region"
+    class="shop-region {{ $errors->has('region') ? 'is-invalid' : '' }}"
     value="{{ old('region') }}"
     type="text"
     >
+    
 
     <label for="store_in">
       店内飲食
@@ -77,12 +91,13 @@
     <textarea
         id="datail"
         name="datail"
-        class="shop-datail"
+        class="shop-datail {{ $errors->has('datail') ? 'is-invalid' : '' }}"
         rows="4"
     >{{ old('datail') }}</textarea>
+    
 
     <div class="shop-img">
-    <input type="file" name="img">
+      <input type="file" name="img">
     </div>
 
     <p>
@@ -96,10 +111,11 @@
           <input
           id="name"
           name="name[]"
-          class="name"
-          value="{{ old('name') }}"
+          class="name {{ $errors->has('name[]') ? 'is-invalid' : '' }}"
+          value=""
           type="text"
           >
+          
 
           <label for="com-price">
             金額
@@ -107,10 +123,11 @@
           <input
           id="price"
           name="price[]"
-          class="price"
-          value="{{ old('price') }}"
+          class="price {{ $errors->has('price[]') ? 'is-invalid' : '' }}"
+          value=""
           type="text"
           >
+          
 
           <label for="description">
               商品紹介
@@ -120,7 +137,7 @@
               name="description[]"
               class="com-description"
               rows="4"
-          >{{ old('description') }}</textarea>
+          ></textarea>
         <input type="button" value="＋" class="add pluralBtn[]">
         <input type="button" value="－" class="del pluralBtn[]">
         <input type="hidden" name="num[]">
@@ -136,6 +153,9 @@
         <button type="submit" class="btn btn-primary">
             登録する
         </button>
-</form>
     </div>
+</form>
+<div class="backg">
+  背景の色を変える
 </div>
+@endsection

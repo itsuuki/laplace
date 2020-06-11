@@ -15,21 +15,25 @@
     <textarea
         id="post"
         name="post"
-        class="pos-detl"
+        class="pos-detl {{ $errors->has('post') ? 'is-invalid' : '' }}"
         rows="4"
     >{{ old('post') }}</textarea>
+    @if ($errors->has('post'))
+      <div class="invalid-feedback">
+          {{ $errors->first('post') }}
+      </div>
+    @endif
 
-    <input type="file" name="image">
-
+    <input type="file" name="image" class="img">
     <div class="mt-5">
-      <a class="po-cal" href="/">
-          キャンセル
-      </a>
-
+      
       <button type="submit" class="post-btn">
         <span>やりましたよ必死に!</span><span>必死でやりましたか？</span>
       </button>
     </div>
+    <a class="po-cal" href="/">
+        キャンセル
+    </a>
   </div>
 </form>
 @endsection
