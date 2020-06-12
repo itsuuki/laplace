@@ -14,7 +14,7 @@
       </div>
       @foreach ($images as $image)
           @if ($post->id === $image->post_id)
-          <img src="storage/app/{{ $image->image }}" width="100px" height="100px">
+          <img src="{{ asset('storage/'. $image->image) }}" width="100px" height="100px">
           @endif
       @endforeach
       <form action="{{ action('PostController@destroy', $post->id) }}" id="form_{{ $post->id }}" method="post">

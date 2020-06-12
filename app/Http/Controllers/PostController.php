@@ -51,7 +51,7 @@ class PostController extends Controller
         $post->save();
 
         if ($request->image !== null) {
-            $image->image = $request->file('image')->store('public/images');
+            $image->image = $request->image->store('images');
 
             $image->post_id = $post->id;
 

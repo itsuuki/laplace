@@ -36,8 +36,6 @@ class ShopController extends Controller
             'region' => 'required|max:100',
             'datail' => 'required|max:200',
             'photo' => 'required | numeric | digits_between:8,11',
-            
-            // 'image' => 'required',
         ],
         [
             'sname.required' => '店の名前は必須です。',
@@ -45,7 +43,6 @@ class ShopController extends Controller
             'region.required' => '住所は必須です。',
             'datail.required' => '紹介文は必須です。',
             'photo.required' => '電話番号は必須です。',
-            
         ]);
         $value = new Shop;
 
@@ -77,7 +74,7 @@ class ShopController extends Controller
             if ($request->img !== null) {
             $img = new Image;
 
-            $img->image = $request->img[$l]->store('public/images');
+            $img->image = $request->img[$l]->store('images');
 
             $img->shop_id = $value->id;
 
@@ -105,7 +102,7 @@ class ShopController extends Controller
             $com->shop_id = $value->id;
             $com->save();
             if ($request->img !== null) {
-                $image->image = $request->image[$i]->store('public/images');
+                $image->image = $request->image[$i]->store('images');
                 $image->commodity_id = $com->id;
                 $image->save();
             }
@@ -147,7 +144,7 @@ class ShopController extends Controller
         $value = Shop::findOrFail($request->id);
         $value->fill($request->all())->save();
         $img = Image::find($request->id);
-        $img->image = $request->img->store('public/images');
+        $img->image = $request->img->store('images');
         $img->shop_id = $value->id;
         $img->save();
         foreach ($request->num as $val) {
@@ -160,7 +157,7 @@ class ShopController extends Controller
             $com->user_id = $request->user()->id;
             $com->shop_id = $request->id;
             $com->save();
-            $image->image = $request->image[$i]->store('public/images');
+            $image->image = $request->image[$i]->store('images');
             $image->shop_id = $value->id;
             $image->commodity_id = $com->id;
             $image->save();
