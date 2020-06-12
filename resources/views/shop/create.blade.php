@@ -106,10 +106,11 @@
     
     <div id="img-box" data-ind="1">
       <div class="shop-img">
-        <input type="file" name="img[]">
-        <div class="img-show">
+        <input type="file" name="img[]" id="myfile">
+        <!-- <img id="img[]" style="width:100px;height:100px;" /> -->
+        <!-- <div class="img-show">
           
-        </div>
+        </div> -->
         <div name="img-rem[]" id="img-rem" class="img-rem">
           画像削除
         </div>

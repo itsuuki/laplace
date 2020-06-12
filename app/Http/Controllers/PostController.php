@@ -38,9 +38,10 @@ class PostController extends Controller
         [
             'post.required' => '投稿内容は必須です。',
         ]);
+
         $post = new Post;
 
-        $image = new Image;
+        $l= 0;
 
         $post->post = $request->input('post');
 
@@ -50,14 +51,18 @@ class PostController extends Controller
 
         $post->save();
 
-        if ($request->image !== null) {
-            $image->image = $request->image->store('images');
+        foreach ($request->nums as $val) {
+            if ($request->img !== null) {
+            $img = new Image;
 
-            $image->post_id = $post->id;
+            $img->image = $request->img[$l]->store('images');
 
-            $image->save();
+            $img->post_id = $post->id;
+
+            $img->save();
+            }
+            $l++;
         }
-
         return redirect('/home');
     }
 
