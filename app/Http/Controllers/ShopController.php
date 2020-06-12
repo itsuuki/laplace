@@ -51,6 +51,8 @@ class ShopController extends Controller
 
         $i = 0;
 
+        $l= 0;
+
         $value->sname = $request->input('sname');
 
         $value->sprice = $request->input('sprice');
@@ -71,34 +73,28 @@ class ShopController extends Controller
         
         $value->save();
 
-        if ($request->img !== null) {
+        foreach ($request->nums as $val) {
+            if ($request->img !== null) {
             $img = new Image;
 
-            $img->image = $request->img->store('public/images');
+            $img->image = $request->img[$l]->store('public/images');
 
             $img->shop_id = $value->id;
 
             $img->save();
+            }
+            $l++;
         }
 
-        // $commodity->name = $request->input('name');
-
-        // $commodity->price = $request->input('price');
-
-        // $commodity->description = $request->input('description');
-        // $commodity->shop_id = $value->id;
-        
-        // $commodity->save();
-
         foreach ($request->num as $val) {
-            $request->validate([
-                `name[$i]` => 'required|max:50',
-                `price[$i]` => 'required|numeric',
-            ],
-            [
-                `name[$i].required` => '商品名は必須です。',
-                `price[$i].required` => '金額は必須です。',
-            ]);
+            // $request->validate([
+            //     `name[$i]` => 'required|max:50',
+            //     `price[$i]` => 'required|numeric',
+            // ],
+            // [
+            //     `name[$i].required` => '商品名は必須です。',
+            //     `price[$i].required` => '金額は必須です。',
+            // ]);
             $com = new Commodity;
             $image = new Image;
             echo var_dump($request->image[$i]);

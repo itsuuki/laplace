@@ -41,8 +41,20 @@ $(function(){
     </div>`;
     return html;
   }
+  const buildFile = (sindex)=> {
+    const html = `
+    <div class="shop-img">
+      <input type="file" name="img[${sindex}]">
+      <div name="img-rem[${sindex}]" id="img-rem" class="img-rem">
+        画像削除
+      </div>
+      <input type="hidden" name="nums[${sindex}]">
+    </div>`;
+    return html;
+  }
   var count_value = 0;
   var count_values = 1;
+  var count_img = 1;
   $(document).on("click", ".add", function() {
     count_value++;
     count_values++;
@@ -88,7 +100,38 @@ $(function(){
         });
       }
   });
-  $(document).on("click", ".backg", function() {
-    $(".py-4").css("color", "#0000FF");
+  $(document).on("click", ".img-add", function() {
+    if (count_img < 4) {
+    count_img++
+    var img_data = document.getElementById('img-box').dataset.ind;
+    var imgc = img_data.innerHTML = count_img;
+    console.log(imgc);
+    $('#img-box').append(buildFile(imgc));
+    $('input[name^=nums]').filter(function(sindex){ 
+      $(this).attr('name','nums['+sindex+']') 
+    });
+    $('input[name^=img]').filter(function(sindex){ 
+      $(this).attr('name','img['+sindex+']') 
+    });
+    }
   });
+  $(document).on("click", ".img-rem", function() {
+    console.log("ok");
+    if (count_img > 1) {
+      count_img--;
+      $(this).parent().remove();
+      $('input[name^=nums]').filter(function(sindex){ 
+        $(this).attr('name','nums['+sindex+']') 
+      });
+      $('input[name^=img]').filter(function(sindex){ 
+        $(this).attr('name','img['+sindex+']') 
+      });
+    }
+  });
+  // $(document).on("click", ".backg", function() {
+  //   $(".shop-main").css("background-color", "#0000FF");
+  // });
+  // function changeBoxColor( newColor ) {
+  //   document.getElementById('shop-main').style.backgroundColor = newColor;
+  // }
 });
