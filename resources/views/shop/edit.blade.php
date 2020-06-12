@@ -95,7 +95,7 @@
     @foreach ($image as $img)
         @if ($shop->id === $img->shop_id)
             <div class="card-bodys">
-                <img src="storage/app/{{ $img->image }}" width="100px" height="100px">
+              <img src="{{ asset('storage/'. $img->image) }}" width="100px" height="100px">
             </div>
         @else
         <div class="shop-img">
@@ -149,7 +149,7 @@
             @foreach ($imgs as $ima)
               @if ($com->id === $ima->commodity_id)
               <div class="card-bodys">
-                  <img src="storage/app/{{ $ima->image }}" width="100px" height="100px">
+                <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
               </div>
               @else
               <!-- <div class="shop-img">

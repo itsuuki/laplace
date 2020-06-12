@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="{{ mix('css/post.css') }}">
+<script src="{{ asset('/js/shop.js') }}" defer></script>
 @section('content')
 <form method="POST" action="{{route('Post.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -24,7 +25,22 @@
       </div>
     @endif
 
-    <input type="file" name="image" class="img">
+    <div id="img-box" data-ind="1">
+      <div class="shop-img">
+        <input type="file" name="img[]" id="myfile">
+        <!-- <img id="img[]" style="width:100px;height:100px;" /> -->
+        <!-- <div class="img-show">
+          
+        </div> -->
+        <div name="img-rem[]" id="img-rem" class="img-rem">
+          画像削除
+        </div>
+        <input type="hidden" name="nums[]">
+      </div>
+    </div>
+    <div class="img-add">
+      写真を追加する
+    </div>
     <div class="mt-5">
       
       <button type="submit" class="post-btn">

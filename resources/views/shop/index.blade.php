@@ -20,4 +20,8 @@
             <div id="stop" class="scrollTop">
                 <a href="">Top</a>
             </div>
+        </div>
+    </div>
+</div>
+<div id="graydisplay"></div>
 @endsection

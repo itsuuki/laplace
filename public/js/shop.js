@@ -95,12 +95,17 @@
 
 $(function () {
   var buildFileField = function buildFileField(index) {
-    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name {{ $errors->has('name[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"{{ old('name[").concat(index, "]') }}\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price {{ $errors->has('price[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"{{ old('price[").concat(index, "]') }}\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      >{{ old('description[").concat(index, "]') }}</textarea>\n\n    <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[").concat(index, "]\">\n    <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[").concat(index, "]\">\n    <input type=\"hidden\" name=\"num[").concat(index, "]\">\n    <input type=\"file\" name=\"image[").concat(index, "]\">\n    </div>");
+    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name {{ $errors->has('name[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price {{ $errors->has('price[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      ></textarea>\n\n    <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[").concat(index, "]\">\n    <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[").concat(index, "]\">\n    <input type=\"hidden\" name=\"num[").concat(index, "]\">\n    <input type=\"file\" name=\"image[").concat(index, "]\">\n    </div>");
     return html;
   };
 
   var buildFile = function buildFile(sindex) {
-    var html = "\n    <div class=\"shop-img\">\n      <input type=\"file\" name=\"img[".concat(sindex, "]\">\n      <div name=\"img-rem[").concat(sindex, "]\" id=\"img-rem\" class=\"img-rem\">\n        \u753B\u50CF\u524A\u9664\n      </div>\n      <input type=\"hidden\" name=\"nums[").concat(sindex, "]\">\n    </div>");
+    var html = "\n    <div class=\"shop-img\">\n      <input type=\"file\" name=\"img[".concat(sindex, "]\" id=\"myfile\">\n      <div name=\"img-rem[").concat(sindex, "]\" id=\"img-rem\" class=\"img-rem\">\n        \u753B\u50CF\u524A\u9664\n      </div>\n      <input type=\"hidden\" name=\"nums[").concat(sindex, "]\">\n    </div>");
+    return html;
+  };
+
+  var buildImg = function buildImg(ind, url) {
+    var html = "<img data-index=\"".concat(ind, "\" src=\"").concat(url, "\" width=\"100px\" height=\"100px\">");
     return html;
   };
 
@@ -157,7 +162,6 @@ $(function () {
       count_img++;
       var img_data = document.getElementById('img-box').dataset.ind;
       var imgc = img_data.innerHTML = count_img;
-      console.log(imgc);
       $('#img-box').append(buildFile(imgc));
       $('input[name^=nums]').filter(function (sindex) {
         $(this).attr('name', 'nums[' + sindex + ']');
@@ -180,7 +184,37 @@ $(function () {
         $(this).attr('name', 'img[' + sindex + ']');
       });
     }
-  }); // $(document).on("click", ".backg", function() {
+  });
+  $('input[name^=img]').change(function (e) {
+    // count_img
+    console.log($(this)); //ファイルオブジェクトを取得する
+
+    var file = e.target.files[0];
+    var reader = new FileReader(); //画像でない場合は処理終了
+
+    if (file.type.indexOf("image") < 0) {
+      alert("画像ファイルを指定してください。");
+      return false;
+    } //アップロードした画像を設定する
+
+
+    reader.onload = function (file) {
+      console.log("#img[".concat(count_img, "]"));
+      return function (e) {
+        $("#img[".concat(count_img, "]")).attr("src", e.target.result);
+        $("#img[".concat(count_img, "]")).attr("title", file.name);
+      };
+    }(file);
+
+    reader.readAsDataURL(file);
+  }); // $(document).on("click", ".img-inp", function() {
+  //   const targetIndex = $(this).parent().data('ind');
+  //   const file = e.target.files[0];
+  //   const blobUrl = window.URL.createObjectURL(file);
+  //   console.log(targetIndex);
+  //   // $('.img-show').append(buildImg(targetIndex, blobUrl));
+  // });
+  // $(document).on("click", ".backg", function() {
   //   $(".shop-main").css("background-color", "#0000FF");
   // });
   // function changeBoxColor( newColor ) {

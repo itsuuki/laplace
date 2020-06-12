@@ -9,7 +9,7 @@ $(function(){
       id="name"
       name="name[${index}]"
       class="name {{ $errors->has('name[${index}]') ? 'is-invalid' : '' }}"
-      value="{{ old('name[${index}]') }}"
+      value=""
       type="text"
       >
 
@@ -20,7 +20,7 @@ $(function(){
       id="price"
       name="price[${index}]"
       class="price {{ $errors->has('price[${index}]') ? 'is-invalid' : '' }}"
-      value="{{ old('price[${index}]') }}"
+      value=""
       type="text"
       >
 
@@ -32,7 +32,7 @@ $(function(){
           name="description[${index}]"
           class="com-description"
           rows="4"
-      >{{ old('description[${index}]') }}</textarea>
+      ></textarea>
 
     <input type="button" value="＋" class="add pluralBtn[${index}]">
     <input type="button" value="－" class="del pluralBtn[${index}]">
@@ -44,12 +44,16 @@ $(function(){
   const buildFile = (sindex)=> {
     const html = `
     <div class="shop-img">
-      <input type="file" name="img[${sindex}]">
+      <input type="file" name="img[${sindex}]" id="myfile">
       <div name="img-rem[${sindex}]" id="img-rem" class="img-rem">
         画像削除
       </div>
       <input type="hidden" name="nums[${sindex}]">
     </div>`;
+    return html;
+  }
+  const buildImg = (ind, url)=> {
+    const html = `<img data-index="${ind}" src="${url}" width="100px" height="100px">`;
     return html;
   }
   var count_value = 0;
@@ -105,8 +109,8 @@ $(function(){
     count_img++
     var img_data = document.getElementById('img-box').dataset.ind;
     var imgc = img_data.innerHTML = count_img;
-    console.log(imgc);
     $('#img-box').append(buildFile(imgc));
+    
     $('input[name^=nums]').filter(function(sindex){ 
       $(this).attr('name','nums['+sindex+']') 
     });
@@ -128,6 +132,39 @@ $(function(){
       });
     }
   });
+  $('input[name^=img]').change(function(e){
+    // count_img
+    console.log($(this))
+    //ファイルオブジェクトを取得する
+    var file = e.target.files[0];
+    var reader = new FileReader();
+ 
+    //画像でない場合は処理終了
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+ 
+    //アップロードした画像を設定する
+    reader.onload = (function(file){
+      console.log(`#img[${count_img}]`)
+      return function(e){
+        $(`#img[${count_img}]`).attr("src", e.target.result);
+        $(`#img[${count_img}]`).attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+ 
+  });
+  // $(document).on("click", ".img-inp", function() {
+  //   const targetIndex = $(this).parent().data('ind');
+
+  //   const file = e.target.files[0];
+  //   const blobUrl = window.URL.createObjectURL(file);
+  //   console.log(targetIndex);
+  //   // $('.img-show').append(buildImg(targetIndex, blobUrl));
+  // });
+
   // $(document).on("click", ".backg", function() {
   //   $(".shop-main").css("background-color", "#0000FF");
   // });

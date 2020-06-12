@@ -49,4 +49,5 @@
         </div>
     </div>
 </div>
+<div id="graydisplay"></div>
 @endsection

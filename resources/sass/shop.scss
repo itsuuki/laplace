@@ -260,3 +260,26 @@ $color5: rgb(137, 4, 245);
   width: 80px;
   margin: 0 auto;
 }
+
+#graydisplay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%!important;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+}
+#graydisplay img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  max-width: 90%;
+  max-height: 90%;
+  height: 90%;
+}

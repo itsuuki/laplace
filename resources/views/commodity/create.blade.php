@@ -49,9 +49,9 @@
         <input type="button" value="＋" class="add pluralBtn[]">
         <input type="button" value="－" class="del pluralBtn[]">
         <input type="hidden" name="num[]">
+        <input type="file" name="image[]">
       </div>
     </div>
-    <input type="button" value="aa" class="a">
     <a class="btn btn-secondary" href="{{ action('ShopController@show', $id) }}">
         キャンセル
     </a>
