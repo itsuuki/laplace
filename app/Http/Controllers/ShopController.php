@@ -20,7 +20,8 @@ class ShopController extends Controller
 {
     public function index()
     {
-        return view('shop/index');
+        $shops = Shop::all();
+        return view('shop/index', ['shops' => $shops]);
     }
 
     public function create()
@@ -119,7 +120,8 @@ class ShopController extends Controller
         $review = Review::select('evaluation')->get();
         $review = collect($review)->avg('evaluation');
         $users = User::all();
-        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users]);
+        $images = Image::all();
+        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images]);
     }
 
     public function edit($id)

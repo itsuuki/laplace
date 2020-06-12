@@ -23,7 +23,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('Shop/index', 'ShopController@index');
 Route::get('/User/Shop/create', 'ShopController@create');
 Route::get('/User/Shop/edit', 'ShopController@edit');
 Route::get('/User/{$id}', 'UserController@show');

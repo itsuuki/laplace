@@ -42,6 +42,13 @@
                                 <p class="card-text">
                                     {{ $shop->sprice }}
                                 </p>
+                                @foreach ($images as $image)
+                                    @if ($shop->id === $image->shop_id)
+                                        <div class="card-bodys">
+                                            <img src="{{ asset('storage/'. $image->image) }}" width="100px" height="100px">
+                                        </div>
+                                    @endif
+                                @endforeach
                                 @if($shop->users()->where('user_id', Auth::id())->exists())
                                 <div class="col-md-3">
                                     <form action="{{ route('unfavorites', $shop) }}" method="POST">
