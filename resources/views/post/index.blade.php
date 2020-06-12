@@ -11,10 +11,9 @@
             @else
 
                 <!-- <div class="card-header">一覧</div> -->
-                <div id="wrap">
-                    <div class="change-btn">
-                        投稿一覧一覧/店一覧
-                        <div class="bottom1">
+                    <a class="shop-index" href="Shop/index">
+                        店一覧
+                    </a>
                         @foreach ($posts as $post)
                             @foreach ($shops as $shop)
                                 @if ($post->shop_id === $shop->id)
@@ -40,24 +39,12 @@
                                     @endforeach
                                     </div>
                         @endforeach
-                        </div>
-                        <div class="bottom2">
-                            @foreach ($shops as $shop)
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        {{$shop->sname}}
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            {{$shop->sprice}}
-                                        </p>
-                                    </div>
-                                </div>
-                            @endforeach
+                        <div id="stop" class="scrollTop">
+                            <a href="">Top</a>
                         </div>
             @endguest
                     <!-- </div> -->
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>

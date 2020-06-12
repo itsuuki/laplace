@@ -27,8 +27,9 @@ class HomeController extends Controller
         $keyword = $request->input('search');
         // $query = Shop::all();
         $query = Shop::query();
-        $shop = $query->where('sname','like', '%' .$keyword. '%')->get();
-        echo var_dump($shop);
+        $shops = $query->where('sname','like', '%' .$keyword. '%')->get();
+        // echo var_dump($shop);
+        return view('shop/index', ['shops' => $shops]);
 
         // $shops = $query->get();
 
