@@ -99,8 +99,14 @@ $(function () {
     return html;
   };
 
+  var buildFile = function buildFile(sindex) {
+    var html = "\n    <div class=\"shop-img\">\n      <input type=\"file\" name=\"img[".concat(sindex, "]\">\n      <div name=\"img-rem[").concat(sindex, "]\" id=\"img-rem\" class=\"img-rem\">\n        \u753B\u50CF\u524A\u9664\n      </div>\n      <input type=\"hidden\" name=\"nums[").concat(sindex, "]\">\n    </div>");
+    return html;
+  };
+
   var count_value = 0;
   var count_values = 1;
+  var count_img = 1;
   $(document).on("click", ".add", function () {
     count_value++;
     count_values++;
@@ -146,9 +152,40 @@ $(function () {
       });
     }
   });
-  $(document).on("click", ".backg", function () {
-    $(".py-4").css("color", "#0000FF");
+  $(document).on("click", ".img-add", function () {
+    if (count_img < 4) {
+      count_img++;
+      var img_data = document.getElementById('img-box').dataset.ind;
+      var imgc = img_data.innerHTML = count_img;
+      console.log(imgc);
+      $('#img-box').append(buildFile(imgc));
+      $('input[name^=nums]').filter(function (sindex) {
+        $(this).attr('name', 'nums[' + sindex + ']');
+      });
+      $('input[name^=img]').filter(function (sindex) {
+        $(this).attr('name', 'img[' + sindex + ']');
+      });
+    }
   });
+  $(document).on("click", ".img-rem", function () {
+    console.log("ok");
+
+    if (count_img > 1) {
+      count_img--;
+      $(this).parent().remove();
+      $('input[name^=nums]').filter(function (sindex) {
+        $(this).attr('name', 'nums[' + sindex + ']');
+      });
+      $('input[name^=img]').filter(function (sindex) {
+        $(this).attr('name', 'img[' + sindex + ']');
+      });
+    }
+  }); // $(document).on("click", ".backg", function() {
+  //   $(".shop-main").css("background-color", "#0000FF");
+  // });
+  // function changeBoxColor( newColor ) {
+  //   document.getElementById('shop-main').style.backgroundColor = newColor;
+  // }
 });
 
 /***/ }),

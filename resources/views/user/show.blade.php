@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+  
   <a class="shop-new" href="Shop/create">
     店を登録する
   </a>
