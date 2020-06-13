@@ -81,118 +81,37 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/delete-com.js":
-/*!************************************!*\
-  !*** ./resources/js/delete-com.js ***!
-  \************************************/
+/***/ "./resources/js/user.js":
+/*!******************************!*\
+  !*** ./resources/js/user.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  $('.deleteTarget').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var comID = clickEle.attr('data-com-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Shop/' + comID,
-        type: 'POST',
-        data: {
-          'id': comID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
-  });
-  $('.deleteTarget-ima').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var imaID = clickEle.attr('data-ima-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Shop/Image/' + imaID,
-        type: 'POST',
-        data: {
-          'id': imaID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
-  });
-  $('.deleteTarget-img').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var imgID = clickEle.attr('data-img-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Shop/Image/' + imgID,
-        type: 'POST',
-        data: {
-          'id': imgID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
+  //.accordion_oneの中の.accordion_headerがクリックされたら
+  $('.s_07 .accordion_one .accordion_header').click(function () {
+    //クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
+    $(this).next('.accordion_inner').slideToggle();
+    $(this).toggleClass("open");
   });
 });
 
 /***/ }),
 
-/***/ 2:
-/*!******************************************!*\
-  !*** multi ./resources/js/delete-com.js ***!
-  \******************************************/
+/***/ 5:
+/*!************************************!*\
+  !*** multi ./resources/js/user.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\delete-com.js */"./resources/js/delete-com.js");
+module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\user.js */"./resources/js/user.js");
 
 
 /***/ })

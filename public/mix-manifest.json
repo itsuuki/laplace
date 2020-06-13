@@ -3,8 +3,10 @@
     "/css/app.css": "/css/app.css",
     "/css/shop.css": "/css/shop.css",
     "/css/post.css": "/css/post.css",
+    "/css/user.css": "/css/user.css",
     "/js/delete-com.js": "/js/delete-com.js",
     "/js/favorite.js": "/js/favorite.js",
     "/js/price.js": "/js/price.js",
-    "/js/shop.js": "/js/shop.js"
+    "/js/shop.js": "/js/shop.js",
+    "/js/user.js": "/js/user.js"
 }

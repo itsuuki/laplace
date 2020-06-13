@@ -10,6 +10,8 @@ use App\Commodity;
 
 use App\Review;
 
+use App\Image;
+
 class CommodityController extends Controller
 {
     public function create($id)
@@ -23,12 +25,19 @@ class CommodityController extends Controller
         $i = 0;
         foreach ($request->num as $val) {
             $com = new Commodity;
+            $image = new Image;
             $com->name = $request->name[$i];
             $com->price = $request->price[$i];
             $com->description = $request->description[$i];
             $com->shop_id = $request->id;
             $com->user_id = $request->user()->id;
             $com->save();
+            if ($request->image[$i] !== null) {
+                $image->image = $request->image[$i]->store('images');
+                $image->shop_id = $value->id;
+                $image->commodity_id = $com->id;
+                $image->save();
+            }
             $i++;
         }
             $reviews = Review::all();
