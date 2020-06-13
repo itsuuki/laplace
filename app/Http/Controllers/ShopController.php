@@ -159,10 +159,12 @@ class ShopController extends Controller
             $com->user_id = $request->user()->id;
             $com->shop_id = $request->id;
             $com->save();
-            $image->image = $request->image[$i]->store('images');
-            $image->shop_id = $value->id;
-            $image->commodity_id = $com->id;
-            $image->save();
+            if ($request->img !== null) {
+                $image->image = $request->image[$i]->store('images');
+                $image->shop_id = $value->id;
+                $image->commodity_id = $com->id;
+                $image->save();
+            }
             $i++;
         }
         $reviews = Review::all();
@@ -173,11 +175,7 @@ class ShopController extends Controller
 
     public function destroy($id)
     {
-        // echo var_dump($id);
-        $post = Commodity::findOrFail($id);
-        $post->delete();
-        $posts = Commodity::all();
-        $images = Image::all();
-        return view('post.all', ['posts' => $posts, 'images'=> $images]);
+        $com = Commodity::findOrFail($id);
+        $com->delete();
     }
 }

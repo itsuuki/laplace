@@ -31,7 +31,8 @@ Route::get('/Shop/{$id}', 'ShopController@show')->name('shop.show');
 Route::get('/Shop/{$id}/edit', 'ShopController@edit');
 Route::post('/Shop/update', 'ShopController@update');
 Route::get('/Shop', 'ShopController@destroy');
-Route::get('/Home/search', 'HomeController@search')->name('home.search');;;
+Route::get('/Shop/Image', 'ImageController@destroy');
+Route::get('/Home/search', 'HomeController@search')->name('home.search');
 Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
   return view('review.create', ['shop_id'=>$shop_id]);
 });
@@ -49,9 +50,11 @@ Route::post('Shop/{shop}/unfavorites', 'FavoriteController@destroy')->name('unfa
 Route::resource('User', 'UserController');
 Route::resource('Shop', 'ShopController');
 Route::resource('Post', 'PostController');
+Route::resource('Image', 'ImageController');
 Route::resource('Review', 'ReviewController');
 Route::resource('Shop.favorite', 'FavoriteController');
 Route::resource('Shop.Reservation', 'ReservationController');
+Route::resource('Shop.Image', 'ImageController');
 Route::resource('User.Reservation', 'ReservationController');
 Route::resource('Reservation', 'ReservationController');
 Route::resource('Shop.Commodity', 'CommodityController');

@@ -12,7 +12,6 @@
   
 <form method="POST" action="{{url('Shop/update')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <!-- @method('PUT') -->
     
     <label for="name">
         店名
@@ -96,6 +95,9 @@
         @if ($shop->id === $img->shop_id)
             <div class="card-bodys">
               <img src="{{ asset('storage/'. $img->image) }}" width="100px" height="100px">
+              <a class="deleteTarget-img" id="deleteTarget-img" data-img-id="{{$img->id}}">
+                削除
+              </a>
             </div>
         @else
         <div class="shop-img">
@@ -139,23 +141,21 @@
             >{{ old('description', $com->description) }}</textarea>
 
             <input type="hidden" name="num[]" value="{{$com->id}}">
-            <input type="file" name="image[]">
-
-            <a class="review-ne" id="deleteTarget" data-com-id="{{$com->id}}">
-                削除
+            <a class="deleteTarget" id="deleteTarget" data-com-id="{{$com->id}}">
+                商品削除
             </a>
           </div>
           @foreach ($images as $imgs)
             @foreach ($imgs as $ima)
-              @if ($com->id === $ima->commodity_id)
+              @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
               <div class="card-bodys">
                 <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
+                <a class="deleteTarget-ima" id="deleteTarget-ima" data-ima-id="{{$ima->id}}">
+                  削除
+                </a>
               </div>
               @else
-              <!-- <div class="shop-img">
-                <input type="file" name="img">
-              </div> -->
-              <!-- {{$com->name}} -->
+                <input type="file" name="image[]">
               @endif
             @endforeach
           @endforeach
@@ -170,7 +170,6 @@
             </button>
             <input type="hidden" name="id" value="{{$shop->id}}">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-    <!-- <input type="hidden" name="ids" value="{{$commodities}}"> -->
 </form>
 </div>
 </body>
