@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+@foreach ($shops as $shop)
+@foreach ($shop as $shp)
+{{$shp->sname}}
+@endforeach
+@endforeach
 @foreach ($commodities as $commodity)
     @foreach ($commodity as $com)
       {{ $com->name }}

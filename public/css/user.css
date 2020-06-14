@@ -15,8 +15,7 @@
 }
 
 .s_07 .accordion_one {
-  max-width: 1024px;
-  margin: 0 auto;
+  width: calc(100vw - 700px);
 }
 
 .s_07 .accordion_one .accordion_header {
@@ -162,5 +161,71 @@
     text-align: left;
     padding: 15px 60px 15px 15px;
   }
+}
+
+.user-post-page {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.user-datail-all {
+  width: calc(100vw - 600px);
+}
+
+.scrollTop {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  opacity: 0;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.scrollTop a {
+  font-size: 18px;
+  color: #fff;
+  background: #1856C9;
+  padding: 20px;
+}
+
+.scrollTop a:hover {
+  background: #44CAFF;
+}
+
+#graydisplay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100% !important;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+#graydisplay img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  max-width: 90%;
+  max-height: 90%;
+  height: 90%;
+}
+
+.line {
+  border-bottom: 3px double black;
+  padding-bottom: 15px;
+}
+
+.tab_item {
+  display: none;
+}
+
+.is-active-item {
+  display: block;
 }
 
