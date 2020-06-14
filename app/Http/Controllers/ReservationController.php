@@ -61,7 +61,7 @@ class ReservationController extends Controller
         $commodity_id = $reservations->pluck('commodity_id');
         foreach ($commodity_id as $com_id) {
             $commodity = Commodity::where('id', $com_id)->get();
-            $image = Image::where('id', $com_id)->get();
+            $image = Image::where('commodity_id', $com_id)->get();
             array_push($commodities,$commodity);
             array_push($images,$image);
         }
@@ -70,17 +70,14 @@ class ReservationController extends Controller
 
     public function index($id)
     {
-        // return redirect('/home');
         // echo var_dump($id);
         $reservations = Reservation::where('shop_id', $id)->get();
-        // $user_id = $reservations->pluck('user_id');
-        // $users = User::where('id', $user_id)->get();
         $commodities = array();
         $images = array();
         $commodity_id = $reservations->pluck('commodity_id');
         foreach ($commodity_id as $com_id) {
             $commodity = Commodity::where('id', $com_id)->get();
-            $image = Image::where('id', $com_id)->get();
+            $image = Image::where('commodity_id', $com_id)->get();
             array_push($commodities,$commodity);
             array_push($images,$image);
         }
