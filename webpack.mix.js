@@ -21,3 +21,5 @@ mix.js('resources/js/favorite.js', 'public/js')
 mix.sass('resources/sass/post.scss', 'public/css');
 mix.js('resources/js/user.js', 'public/js')
     .sass('resources/sass/user.scss', 'public/css');
+mix.js('resources/js/post.js', 'public/js')
+    .sass('resources/sass/post_all.scss', 'public/css');

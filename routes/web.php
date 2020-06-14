@@ -41,7 +41,7 @@ Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
 // });
 Route::get('/Shop/{shop_id}/Reservation/create', 'ReservationController@create');
 Route::get('/Shop/{shop_id}/Commodity/create', 'CommodityController@create');
-Route::get('User/Post/all', 'PostController@all');
+Route::get('/User/{id}/Post/all', 'PostController@all');
 Route::delete('Post/destroy/{$id}', 'PostController@destroy');
 Route::get('User/{id}/Reservation/show', 'ReservationController@show');
 Route::get('Shop/{$id}/Reservation', 'ReservationController@index');
@@ -53,6 +53,7 @@ Route::resource('Post', 'PostController');
 Route::resource('Image', 'ImageController');
 Route::resource('Review', 'ReviewController');
 Route::resource('Shop.favorite', 'FavoriteController');
+// Route::resource('Shop.Post', 'PostController');
 Route::resource('Shop.Reservation', 'ReservationController');
 Route::resource('Shop.Image', 'ImageController');
 Route::resource('User.Reservation', 'ReservationController');

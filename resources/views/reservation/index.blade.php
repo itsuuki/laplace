@@ -6,9 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-@foreach ($users as $user)
-  {{ $user->name }}
-@endforeach
+
 @foreach ($commodities as $commodity)
     @foreach ($commodity as $com)
       {{ $com->name }}

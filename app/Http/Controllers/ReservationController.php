@@ -51,7 +51,11 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::where('user_id', $id)->get();
         $shop_id = $reservations->pluck('shop_id');
-        $shops = Shop::where('id', $shop_id)->get();
+        $shops = array();
+        foreach ($shop_id as $sh_id) {
+            $shop = Shop::where('id', $sh_id)->get();
+            array_push($shops,$shop);
+        }
         $commodities = array();
         $images = array();
         $commodity_id = $reservations->pluck('commodity_id');
@@ -61,7 +65,7 @@ class ReservationController extends Controller
             array_push($commodities,$commodity);
             array_push($images,$image);
         }
-        return view('reservation/index', ['reservations' => $reservations, 'shops' => $shops, 'commodities' => $commodities, 'images' => $images]);
+        return view('reservation/order', ['reservations' => $reservations, 'shops' => $shops, 'commodities' => $commodities, 'images' => $images]);
     }
 
     public function index($id)
@@ -69,8 +73,8 @@ class ReservationController extends Controller
         // return redirect('/home');
         // echo var_dump($id);
         $reservations = Reservation::where('shop_id', $id)->get();
-        $user_id = $reservations->pluck('user_id');
-        $users = User::where('id', $user_id)->get();
+        // $user_id = $reservations->pluck('user_id');
+        // $users = User::where('id', $user_id)->get();
         $commodities = array();
         $images = array();
         $commodity_id = $reservations->pluck('commodity_id');
@@ -80,6 +84,6 @@ class ReservationController extends Controller
             array_push($commodities,$commodity);
             array_push($images,$image);
         }
-        return view('reservation/index', ['reservations' => $reservations, 'users' => $users, 'commodities' => $commodities, 'images' => $images]);
+        return view('reservation/index', ['reservations' => $reservations, 'commodities' => $commodities, 'images' => $images]);
     }
 }

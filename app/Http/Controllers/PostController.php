@@ -66,11 +66,27 @@ class PostController extends Controller
         return redirect('/home');
     }
 
-    public function all()
+    public function all($id)
     {
-        $posts = Post::all();
-        $images = Image::all();
-        return view('post.all', ['posts' => $posts, 'images'=> $images]);
+        $posts = Post::where('user_id', $id)->get();
+        $ushops = Shop::where('user_id', $id)->get();
+        $shop_id = $posts->pluck('shop_id');
+        $image_id = $posts->pluck('id');
+        // echo var_dump($posts);
+        // $image_id = $posts->id;
+        $images = array();
+        foreach ($image_id as $img_id) {
+            $image =Image::where('post_id', $img_id)->get();
+            array_push($images,$image);
+        }
+        $shops = array();
+        foreach ($shop_id as $sh_id) {
+            $shop = Shop::where('id', $sh_id)->get();
+            array_push($shops,$shop);
+        }
+        // $shops = Shop::all();
+        // $images = Image::all();
+        return view('post.all', ['posts' => $posts, 'images'=> $images, 'shops'=> $shops, 'ushops'=> $ushops]);
     }
 
     public function destroy($post_id)
