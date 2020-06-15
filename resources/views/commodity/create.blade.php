@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+@extends('layouts.app')
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
   <script src="{{ asset('/js/shop.js') }}" defer></script>
-</head>
-<body>
+@section('content')
 <form method="POST" action="{{route('Commodity.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
+    @if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	  @endif
     <p>
       新規商品数<span id="press-button">1</span>個
     </p>
@@ -21,8 +24,8 @@
           <input
           id="name"
           name="name[]"
-          class="name"
-          value="{{ old('name') }}"
+          class="name {{ $errors->has('name[]') ? 'is-invalid' : '' }}"
+          value="{{ old('name[]') }}"
           type="text"
           >
 
@@ -32,8 +35,8 @@
           <input
           id="price"
           name="price[]"
-          class="price"
-          value="{{ old('price') }}"
+          class="price {{ $errors->has('price[]') ? 'is-invalid' : '' }}"
+          value="{{ old('price[]') }}"
           type="text"
           >
 
@@ -45,19 +48,19 @@
               name="description[]"
               class="com-description"
               rows="4"
-          >{{ old('description') }}</textarea>
+          >{{ old('description[]') }}</textarea>
         <input type="button" value="＋" class="add pluralBtn[]">
         <input type="button" value="－" class="del pluralBtn[]">
         <input type="hidden" name="num[]">
-        <input type="file" name="image[]">
+        <input type="file" name="image[]" class="com-image-add {{ $errors->has('image') ? 'is-invalid' : '' }}" value="{{ old('image') }}">
       </div>
     </div>
     <a class="btn btn-secondary" href="{{ action('ShopController@show', $id) }}">
         キャンセル
     </a>
+    <!-- <button class="aa">a</button> -->
     <button type="submit" class="btn btn-primary">
         更新する
     </button>
     <input type="hidden" name="id" value="{{$id}}">
-</body>
-</html>
+@endsection

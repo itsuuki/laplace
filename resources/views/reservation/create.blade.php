@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+@extends('layouts.app')
+<link rel="stylesheet" href="{{ mix('css/post_all.css') }}">
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
   <script src="{{ asset('/js/price.js') }}" defer></script>
-</head>
-<body>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 <form method="POST" action="{{route('Reservation.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="reser">
@@ -15,7 +13,7 @@
             <div class="reser-form">
                 {{ $com->name }}
                 <div class="com-pri" data-price="{{$com->price}}">
-                    {{ $com->price }}
+                    {{ $com->price }}円
                 </div>
                 <input type="hidden" name="ids[]" value="{{$com->id}}">
                 @foreach ($image as $ima)
@@ -44,9 +42,11 @@
             </div>
         @endforeach
     </div>
-    <p>
+    <div class="total-price">
+    <!-- <p> -->
       合計金額<span id="total-price">0</span>円
-    </p>
+    <!-- </p> -->
+    </div>
 
     <a class="btn btn-secondary" href="/">
         キャンセル
@@ -55,5 +55,4 @@
     <button type="submit" class="btn btn-primary">
         登録する
     </button>
-</body>
-</html>
+@endsection
