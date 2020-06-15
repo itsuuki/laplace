@@ -17,12 +17,12 @@
             </div>
           </div>
           <div class="accordion_one">
-            <div class="accordion_header">B<div class="i_box"><i class="one_i"></i></div></div>
+            <div class="accordion_header">お店の投稿一覧/注文一覧<div class="i_box"><i class="one_i"></i></div></div>
             <div class="accordion_inner">
               <div class="accordion_one">
                 <div class="accordion_header">
                 <a class="tab_btn is-active-btn" href="#item1">
-                店の投稿一覧
+                お店の投稿一覧
                 </a>
                 </div>
                 <div class="accordion_header">
@@ -120,26 +120,33 @@
     <!-- </div> -->
     <!-- </div> -->
   </div>
+  <div class="tab_item" id="item2">
   @foreach ($reservations as $reservation)
-  @foreach ($shops as $shop)
-  @if ($shop->id === $reservation->shop_id)
-        <div class="tab_item" id="item2">
+  @foreach ($res_shops as $res_shop)
+  @foreach ($res_shop as $res_shp)
+  @if ($res_shp->id === $reservation->shop_id)
           <div class="card mb-4">
             <div class="card-header">
-              {{$shop->sname}}
+              {{$res_shp->sname}}
             </div>
-            @endif
-          @foreach ($commodities as $commodity)
+            @foreach ($commodities as $commodity)
             @foreach ($commodity as $com)
+            
             <div class="card-body">
               <p class="card-text">
               {{ $com->name }}
-              {{ $com->price }}
-              </p>
-            </div>
-            @endforeach
-            @endforeach
+              {{ $com->price }}円
+              
+            </p>
           </div>
+          <div class="card-bodys">
+          
+          </div>
+          @endforeach
+          @endforeach
+          </div>
+          @endif
+          @endforeach
             @endforeach
           @endforeach
   </div>

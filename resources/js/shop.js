@@ -132,6 +132,14 @@ $(function(){
       });
     }
   });
+  $(document).on("click", ".a", function() {
+    $('input[name^=nums]').filter(function(sindex){ 
+      $(this).attr('name','nums['+sindex+']') 
+    });
+    $('input[name^=img]').filter(function(sindex){ 
+      $(this).attr('name','img['+sindex+']') 
+    });
+  });
   $('input[name^=img]').change(function(e){
     // count_img
     console.log($(this))
