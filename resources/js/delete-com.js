@@ -14,6 +14,7 @@ $(function() {
             '_method': 'DELETE'}
     })
     .done(function() {
+      console.log(clickEle)
         clickEle.parent().remove();
       })
     .fail(function() {
@@ -25,6 +26,8 @@ $(function() {
       });
     };
   });
+});
+$(function() {
   $('.deleteTarget-ima').on('click', function() {
     var deleteConfirm = confirm('削除してよろしいでしょうか？');
     if(deleteConfirm == true) {
@@ -34,7 +37,7 @@ $(function() {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: '/Shop/Image/' + imaID,
+      url: '/Image/' + imaID,
       type: 'POST',
       data: {'id': imaID,
             '_method': 'DELETE'}
@@ -51,6 +54,8 @@ $(function() {
       });
     };
   });
+});
+$(function() {
   $('.deleteTarget-img').on('click', function() {
     var deleteConfirm = confirm('削除してよろしいでしょうか？');
     if(deleteConfirm == true) {
@@ -60,7 +65,7 @@ $(function() {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: '/Shop/Image/' + imgID,
+      url: '/Image/' + imgID,
       type: 'POST',
       data: {'id': imgID,
             '_method': 'DELETE'}
