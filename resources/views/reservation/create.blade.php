@@ -43,9 +43,7 @@
         @endforeach
     </div>
     <div class="total-price">
-    <!-- <p> -->
       合計金額<span id="total-price">0</span>円
-    <!-- </p> -->
     </div>
 
     <a class="btn btn-secondary" href="/">

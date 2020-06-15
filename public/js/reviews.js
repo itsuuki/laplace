@@ -81,123 +81,47 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/delete-com.js":
-/*!************************************!*\
-  !*** ./resources/js/delete-com.js ***!
-  \************************************/
+/***/ "./resources/js/reviews.js":
+/*!*********************************!*\
+  !*** ./resources/js/reviews.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  $('.deleteTarget').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var comID = clickEle.attr('data-com-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Shop/' + comID,
-        type: 'POST',
-        data: {
-          'id': comID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        console.log(clickEle);
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
+  $(".select").on("click", function () {
+    $(this).parent(".select-box").toggleClass("open");
   });
-});
-$(function () {
-  $('.deleteTarget-ima').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
+  $(document).mouseup(function (e) {
+    var container = $(".select-box");
 
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var imaID = clickEle.attr('data-ima-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Image/' + imaID,
-        type: 'POST',
-        data: {
-          'id': imaID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
+    if (container.has(e.target).length === 0) {
+      container.removeClass("open");
     }
-
-    ;
   });
-});
-$(function () {
-  $('.deleteTarget-img').on('click', function () {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
-
-    if (deleteConfirm == true) {
-      var clickEle = $(this);
-      var imgID = clickEle.attr('data-img-id');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/Image/' + imgID,
-        type: 'POST',
-        data: {
-          'id': imgID,
-          '_method': 'DELETE'
-        }
-      }).done(function () {
-        clickEle.parent().remove();
-      }).fail(function () {
-        alert('エラー');
-      });
-    } else {
-      (function (e) {
-        e.preventDefault();
-      });
-    }
-
-    ;
+  $(".select").on("change", function () {
+    var selection = $(this).find("option:selected").text(),
+        labelFor = $(this).attr("id"),
+        label = $("[for='" + labelFor + "']");
+    label.find(".label-desc").html(selection);
   });
 });
 
 /***/ }),
 
-/***/ 2:
-/*!******************************************!*\
-  !*** multi ./resources/js/delete-com.js ***!
-  \******************************************/
+/***/ 7:
+/*!***************************************!*\
+  !*** multi ./resources/js/reviews.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\delete-com.js */"./resources/js/delete-com.js");
+module.exports = __webpack_require__(/*! C:\Users\wi031\Desktop\laravel\laplace\resources\js\reviews.js */"./resources/js/reviews.js");
 
 
 /***/ })
