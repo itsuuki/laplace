@@ -2,18 +2,23 @@
 <link rel="stylesheet" href="{{ mix('css/user.css') }}">
 <script src="{{ asset('/js/user.js') }}" defer></script>
 @section('content')
+<div class="all">
 <div class="user-post-page">
-  <div class="section s_07">
+
+    <div class="section s_07">
       <div class="accordion_one">
-      <div class="accordion_header">{{ Auth::user()->name }}<div class="i_box"><i class="one_i"></i></div></div>
+        <div class="accordion_header">{{ Auth::user()->name }}<div class="i_box"><i class="one_i"></i></div></div>
         <div class="accordion_inner">
           <div class="accordion_one">
-            <div class="accordion_header">
-              <a class="user-reser-new" href="{{$id}}/Reservation/show">
-                注文一覧
-              </a><div class="i_box"><i class="one_i"></i></div></div>
+            <div class="accordion_header">aaa<div class="i_box"><i class="one_i"></i></div></div>
             <div class="accordion_inner">
-              
+              <div class="accordion_one">
+                <div class="accordion_header">
+                  <a class="tab_btn" href="#item3">
+                  お気に入り
+                  </a></div>
+                <div class="accordion_header">A_b</div>
+              </div>
             </div>
           </div>
           <div class="accordion_one">
@@ -23,13 +28,11 @@
                 <div class="accordion_header">
                 <a class="tab_btn is-active-btn" href="#item1">
                 お店の投稿一覧
-                </a>
-                </div>
+                </a></div>
                 <div class="accordion_header">
                 <a class="tab_btn" href="#item2">
                 注文一覧
-                </a>
-              </div>
+                </a></div>
               </div>
             </div>
           </div>
@@ -41,16 +44,16 @@
         <div class="accordion_inner">
           <div class="accordion_one">
             <div class="accordion_header">登録したお店<div class="i_box"><i class="one_i"></i></div></div>
-            <div class="accordion_inner">
-            @foreach ($shops as $shop)
-              <div class="accordion_one">
-                <div class="accordion_header">
-                  <a class="user-shop" href="/Shop/{{ $shop->id }}">
-                    {{$shop->sname}}
-                  </a>
+              <div class="accordion_inner">
+              @foreach ($shops as $shop)
+                <div class="accordion_one">
+                  <div class="accordion_header">
+                    <a class="user-shop" href="/Shop/{{ $shop->id }}">
+                      {{$shop->sname}}
+                    </a>
+                  </div>
                 </div>
-                @endforeach
-              </div>
+              @endforeach
             </div>
           </div>
           <div class="accordion_one">
@@ -58,15 +61,10 @@
             <div class="accordion_inner">
               <div class="accordion_one">
                 <div class="accordion_header">
-                  <a class="user-post-all" href="{{ Auth::user()->id }}/Post/all">
-                    店の投稿一覧リンク
-                  </a>
-                </div>
-                <div class="accordion_header">
                   <a class="shop-new" href="Shop/create">
                     店を登録する
-                  </a>
-                </div>
+                  </a></div>
+                <div class="accordion_header">B_b</div>
               </div>
             </div>
           </div>
@@ -74,7 +72,6 @@
       </div>
     </div>
   </div>
-  </p>
         
 
 
@@ -82,6 +79,7 @@
                    
                 
   <div class="user-datail-all">
+
     <div class="tab_item is-active-item" id="item1">
           @foreach ($shops as $shop)
             <div class="card mb-4">
@@ -115,16 +113,13 @@
                   </div>
                   @endforeach
           </div>
-        </div>
-      <!-- </div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-  </div>
-  <div class="tab_item" id="item2">
-  @foreach ($reservations as $reservation)
-  @foreach ($res_shops as $res_shop)
-  @foreach ($res_shop as $res_shp)
-  @if ($res_shp->id === $reservation->shop_id)
+
+
+      <div class="tab_item" id="item2">
+      @foreach ($reservations as $reservation)
+      @foreach ($res_shops as $res_shop)
+      @foreach ($res_shop as $res_shp)
+      @if ($res_shp->id === $reservation->shop_id)
           <div class="card mb-4">
             <div class="card-header">
               {{$res_shp->sname}}
@@ -149,9 +144,21 @@
           @endforeach
             @endforeach
           @endforeach
+      </div>
+
+
+    <div class="tab_item" id="item3">
+      @if ($fav_shops !== null)
+      @foreach ($fav_shops as $fav_sho)
+      @foreach ($fav_sho as $fav)
+        {{$fav->sname}}
+      @endforeach
+      @endforeach
+      @endif
+    </div>
+
   </div>
-  </div>
-  </div>
+</div>
 <div id="stop" class="scrollTop">
     <a href="">Top</a>
 </div>

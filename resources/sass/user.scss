@@ -142,10 +142,15 @@
     padding: 15px 60px 15px 15px;
   }
 }
-.user-post-page{
+
+.all {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100vw;
+}
+.user-post-page{
+  width: calc(100vw - 300vw);
 }
 .user-datail-all {
   width: calc(100vw - 600px);

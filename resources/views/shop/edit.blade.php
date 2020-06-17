@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
+  <link rel="stylesheet" href="{{ mix('css/post.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Document</title>
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script src="{{ asset('/js/favorite.js') }}" defer></script>
   <script src="{{ asset('/js/delete-com.js') }}" defer></script>
-</head>
-<body>
-  
+@section('content')
 <form method="POST" action="{{url('Shop/update')}}" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    
+{{ csrf_field() }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header">
     <label for="name">
         店名
     </label>
@@ -23,7 +22,9 @@
         value="{{ old('sname', $shop->sname) }}"
         type="text"
     >
-
+    </div>
+    <div class="card-body">
+      <p class="card-text">
     <label for="photo">
       電話番号  
     </label>
@@ -34,7 +35,7 @@
     value="{{ old('photo', $shop->photo) }}"
     type="text"
     >
-
+    
     <label for="sprice">
       平均価格
     </label>
@@ -45,7 +46,7 @@
     value="{{ old('sprice', $shop->sprice) }}"
     type="text"
     >
-
+    
     <label for="region">
       地域
     </label>
@@ -90,7 +91,7 @@
         class="shop-datail"
         rows="4"
     >{{ old('datail', $shop->datail) }}</textarea>
-
+    </p>
     @foreach ($image as $img)
         @if ($shop->id === $img->shop_id)
             <div class="card-bodys">
@@ -105,7 +106,8 @@
         </div>
         @endif
     @endforeach
-    
+    </div>
+    </div>
         @foreach ($commodity as $com)
           <div class="oya">
             <label for="com-name">
@@ -172,5 +174,11 @@
     <input type="hidden" name="_token" value="{{csrf_token()}}">
 </form>
 </div>
-</body>
-</html>
+</div>
+</div>
+</div>
+<div id="stop" class="scrollTop">
+    <a href="">Top</a>
+</div>
+<div id="graydisplay"></div>
+@endsection

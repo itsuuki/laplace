@@ -116,9 +116,10 @@ class ShopController extends Controller
     public function show($id)
     {
         $shop = Shop::findOrFail($id);
-        $reviews = Review::all();
-        $review = Review::select('evaluation')->get();
-        $review = collect($review)->avg('evaluation');
+        $reviews = Review::where('shop_id', $id)->get();
+        $reviews->pluck('evaluation');
+        // $review = Review::select('evaluation')->get();
+        $review = collect($reviews)->avg('evaluation');
         $users = User::all();
         $images = Image::all();
         return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images]);

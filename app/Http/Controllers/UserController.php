@@ -16,6 +16,8 @@ use App\Reservation;
 
 use App\Commodity;
 
+use App\Favorite;
+
 class UserController extends Controller
 {
     // public function index()
@@ -56,8 +58,24 @@ class UserController extends Controller
             $commodity = Commodity::where('id', $com_id)->get();
             array_push($commodities,$commodity);
         }
+
+        $favorites = Favorite::where('user_id', $id)->get();
+        $favorite_id = $favorites->pluck('shop_id');
+        // $judge=array_filter($favorite);
+        // echo var_dump($favorite);
+        $fav_shops = array();
+        if (count($favorite_id) === 0) {
+            $fav_shops = null;
+        } else {
+            foreach ($favorite_id as $favorite) {
+                $fav_shop = Shop::where('id', $favorite)->get();
+                array_push($fav_shops, $fav_shop);
+            }
+            // echo var_dump($fav_shop);
+        }
+        // echo var_dump($fav_shops);
+        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'commodities' => $commodities, 'reservations' => $reservations, 'res_shops' => $res_shops, 'fav_shops' => $fav_shops]);
         // $commodities = Commodity::all();
-        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'commodities' => $commodities, 'reservations' => $reservations, 'res_shops' => $res_shops]);
     }
 }
 // , 'shop'=> $shop

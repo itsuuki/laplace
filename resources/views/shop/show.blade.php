@@ -87,9 +87,14 @@
                             
                             
                             <div>
+                            <!-- <div class="review-comments"> -->
+                            <span class="review-comments">レビュー一覧</span>
                             @foreach ($reviews as $rev)
-                            {{ $rev->detail }}
+                                <div class="review-comment">
+                                    {{ $rev->detail }}
+                                </div>
                             @endforeach
+                            <!-- </div> -->
                             <!-- </div>
                         </div> -->
                     </div>
@@ -97,6 +102,9 @@
             </div>
         </div>
     </div>
+</div>
+<div id="stop" class="scrollTop">
+    <a href="">Top</a>
 </div>
 <div id="graydisplay"></div>
 @endsection
