@@ -74,6 +74,13 @@
   width: calc(100vw - 550px);
 }
 
+.card-txt {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 .shop-datail {
   width: calc(100vw - 600px);
 }
