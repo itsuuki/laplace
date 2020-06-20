@@ -116,13 +116,23 @@ class ShopController extends Controller
     public function show($id)
     {
         $shop = Shop::findOrFail($id);
+        $commodity = Commodity::where('shop_id', $id)->get();
+        $image = Image::where('shop_id', $id)->get();
+        $commodity_id = $commodity->pluck('id');
+        $imgs = array();
+        foreach ($commodity_id as $com_id) {
+            $img = Image::where('commodity_id', $com_id)->get();
+            array_push($imgs,$img);
+            // echo var_dump(Image::where('id', $com_id)->get());
+        }
         $reviews = Review::where('shop_id', $id)->get();
         $reviews->pluck('evaluation');
         // $review = Review::select('evaluation')->get();
         $review = collect($reviews)->avg('evaluation');
         $users = User::all();
         $images = Image::all();
-        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images]);
+        $commodities = collect($commodity)->count();
+        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'imgs' => $imgs]);
     }
 
     public function edit($id)

@@ -71,6 +71,69 @@
   background: white;
   border-left: solid 6px #5bb7ae;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.336);
+  width: calc(100vw - 550px);
+}
+
+.shop-datail {
+  width: calc(100vw - 600px);
+}
+
+.shop-sprice {
+  width: 150px;
+}
+
+.shop-photo {
+  width: 150px;
+}
+
+.shop-region {
+  width: 350px;
+}
+.card-texts {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.store_in {
+  width: 150px;
+}
+
+.take_out {
+  width: 150px;
+}
+
+.delivery {
+  width: 150px;
+}
+
+#input_plural {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  width: 150px;
+}
+
+.price {
+  width: 150px;
+}
+
+.com-description {
+  width: calc(100vw - 600px);
+}
+
+.add {
+  width: 40px;
+}
+
+.del {
+    width: 40px;
+}
+
+.plus_min {
+  // display: flex;
 }
 
 .scrollTop {
