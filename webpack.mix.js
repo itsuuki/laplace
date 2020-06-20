@@ -25,3 +25,4 @@ mix.js('resources/js/post.js', 'public/js')
     .sass('resources/sass/post_all.scss', 'public/css');
 mix.js('resources/js/reviews.js', 'public/js')
     .sass('resources/sass/reviews.scss', 'public/css');
+    mix.sass('resources/sass/datail.scss', 'public/css');
