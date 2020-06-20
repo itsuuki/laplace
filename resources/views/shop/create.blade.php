@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+@extends('layouts.app')
+  <link rel="stylesheet" href="{{ mix('css/post.css') }}">
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
   <script src="{{ asset('/js/shop.js') }}" defer></script>
-</head>
-<body>
-  
-
+@section('content')
 <div class="shop-main" id="shop-main">
 <form method="POST" action="{{route('Shop.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -21,7 +14,12 @@
 	            @endforeach
 	        </ul>
 	    </div>
-	  @endif
+    @endif
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+            <div class="card mb-4">
+              <div class="card-header">
     <label for="name">
         店名
     </label>
@@ -32,20 +30,9 @@
         value="{{ old('sname') }}"
         type="text"
     >
-   
-
-    <label for="photo">
-      電話番号  
-    </label>
-    <input
-    id="photo"
-    name="photo"
-    class="shop-photo {{ $errors->has('photo') ? 'is-invalid' : '' }}"
-    value="{{ old('photo') }}"
-    type="text"
-    >
-    
-
+    </div>
+    <div class="card-body">
+      <p class="card-texts">
     <label for="sprice">
       平均価格
     </label>
@@ -57,6 +44,17 @@
     type="text"
     >
     
+
+    <label for="photo">
+      電話番号  
+    </label>
+    <input
+    id="photo"
+    name="photo"
+    class="shop-photo {{ $errors->has('photo') ? 'is-invalid' : '' }}"
+    value="{{ old('photo') }}"
+    type="text"
+    >
 
     <label for="region">
       地域
@@ -73,7 +71,7 @@
     <label for="store_in">
       店内飲食
     </label>
-    <select name="store_in">
+    <select name="store_in" class="store_in">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
@@ -81,7 +79,7 @@
     <label for="take_out">
       テイクアウト
     </label>
-    <select name="take_out">
+    <select name="take_out" class="take_out">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
@@ -89,11 +87,11 @@
     <label for="delivery">
       デリバリー
     </label>
-    <select name="delivery">
+    <select name="delivery" class="delivery">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
-    
+    <br>
     <label for="datail">
         店紹介
     </label>
@@ -120,10 +118,13 @@
     <div class="img-add">
       写真を追加する
     </div>
-
+    </p>
+    </div>
+    </div>
     <p>
       新規商品数<span id="press-button">1</span>個
     </p>
+    <div class="oya">
     <div id="input_pluralBox" data-index="1">
       <div id="input_plural" class="input_plural[]">
           <label for="com-name">
@@ -149,7 +150,6 @@
           type="text"
           >
           
-
           <label for="description">
               商品紹介
           </label>
@@ -159,11 +159,14 @@
               class="com-description"
               rows="4"
           >{{ old('description[]') }}</textarea>
-        <input type="button" value="＋" class="add pluralBtn[]">
-        <input type="button" value="－" class="del pluralBtn[]">
-        <input type="hidden" name="num[]">
-        <input type="file" name="image[]">
+          <input type="hidden" name="num[]">
+          <input type="file" name="image[]">
+          <div class="plus_min">
+          <input type="button" value="＋" class="add pluralBtn[]">
+          <input type="button" value="－" class="del pluralBtn[]">
+          </div>
       </div>
+    </div>
     </div>
 
     <div class="mt-5">
@@ -188,5 +191,7 @@
     <input type="button" value="淡い緑色に戻す" onclick="changeBoxColor('#ccffcc');">
 </p> -->
 </div>
-</body>
-</html>
+</div>
+</div>
+</div>
+@endsection

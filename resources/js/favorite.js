@@ -25,3 +25,10 @@ $(function(){
     $("#graydisplay").fadeOut(200);
   });
 });
+
+$(function() {
+  $('.tab_btn').on('click', function() {
+    $('.tab_item').removeClass("is-active-item");
+    $($(this).attr("href")).addClass("is-active-item");
+  });
+});

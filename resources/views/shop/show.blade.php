@@ -14,6 +14,12 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 {{ $shop->sname }}
+                                <a class="tab_btn is-active-btn" href="#item1">
+                                    お店の投稿一覧
+                                </a>
+                                <a class="tab_btn is-active-btn" href="#item2">
+                                    お店のレビュー一覧
+                                </a>
                             </div>
                             <div class="wrap">
                                 @if ($review === 0)
@@ -40,7 +46,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ $shop->sprice }}
+                                    平均金額{{ $shop->sprice }}円
                                 </p>
                                 @foreach ($images as $image)
                                     @if ($shop->id === $image->shop_id)
@@ -88,6 +94,40 @@
                             
                             <div>
                             <!-- <div class="review-comments"> -->
+                            <div class="tab_item is-active-item" id="item1">
+                            @foreach ($commodity as $com)
+                                <div class="oyas">
+                                <label for="com-name">
+                                商品
+                                </label>
+                                {{$com->name}}
+
+                                <label for="com-price">
+                                金額
+                                </label>
+                                {{$com->price}}円
+
+                                <label for="description">
+                                    商品紹介
+                                </label>
+                                {{$com->description}}
+                                <input type="hidden" name="num[]" value="{{$com->id}}">
+                            
+                            @foreach ($imgs as $imag)
+                                @foreach ($imag as $ima)
+                                @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
+                                <div class="card-bodys">
+                                    <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
+                                </div>
+                                @endif
+                                @endforeach
+                            @endforeach
+                            </div>
+                            @endforeach
+                            </div>
+
+
+                            <div class="tab_item" id="item2">
                             <span class="review-comments">レビュー一覧</span>
                             @foreach ($reviews as $rev)
                                 <div class="review-comment">

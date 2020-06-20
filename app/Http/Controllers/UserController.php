@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Http\DB;
+
 use App\Shop;
 
 use App\User;
@@ -41,9 +43,8 @@ class UserController extends Controller
         }
 
         $reservations = Reservation::where('user_id', $id)->latest()->get();
-        // $shops_id = array();
         $shops_id = $reservations->pluck('shop_id');
-        // array_push($shops_id,$shp_id);
+        $cc = $reservations->pluck('created_at');
         $shop_id = $shops_id->unique();
         $res_shops = array();
         foreach ($shop_id as $sh_id) {
@@ -51,13 +52,17 @@ class UserController extends Controller
 
             array_push($res_shops,$shop);
         }
-        // echo var_dump($res_shops);
         $commodities = array();
         $commodity_id = $reservations->pluck('commodity_id');
         foreach ($commodity_id as $com_id) {
             $commodity = Commodity::where('id', $com_id)->get();
             array_push($commodities,$commodity);
         }
+
+
+        // $vc = $reservations->select('id', 'created_at')->get()->groupBy(DB::raw('CAST(created_at AS DATE)'));
+        // echo var_dump($vc);
+
 
         $favorites = Favorite::where('user_id', $id)->get();
         $favorite_id = $favorites->pluck('shop_id');

@@ -34,10 +34,12 @@ $(function(){
           rows="4"
       ></textarea>
 
-    <input type="button" value="＋" class="add pluralBtn[${index}]">
-    <input type="button" value="－" class="del pluralBtn[${index}]">
-    <input type="hidden" name="num[${index}]">
-    <input type="file" name="image[${index}]">
+      <input type="hidden" name="num[]">
+      <input type="file" name="image[]">
+      <div class="plus_min">
+      <input type="button" value="＋" class="add pluralBtn[]">
+      <input type="button" value="－" class="del pluralBtn[]">
+      </div>
     </div>`;
     return html;
   }
@@ -86,7 +88,8 @@ $(function(){
       if (count_values > 1) {
         count_values--;
         document.getElementById("press-button").innerHTML = count_values;
-        $(this).parent().remove();
+        var plus_btn = $(this).parent()
+        plus_btn.parent().remove();
         $('input[name^=name]').filter(function(index){
           $(this).attr('name','name['+index+']') 
         });
