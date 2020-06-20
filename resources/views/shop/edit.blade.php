@@ -24,7 +24,18 @@
     >
     </div>
     <div class="card-body">
-      <p class="card-text">
+      <p class="card-txt">
+      <label for="sprice">
+      平均価格
+    </label>
+    <input
+    id="sprice"
+    name="sprice"
+    class="shop-sprice"
+    value="{{ old('sprice', $shop->sprice) }}"
+    type="text"
+    >
+
     <label for="photo">
       電話番号  
     </label>
@@ -36,16 +47,6 @@
     type="text"
     >
     
-    <label for="sprice">
-      平均価格
-    </label>
-    <input
-    id="sprice"
-    name="sprice"
-    class="shop-name"
-    value="{{ old('sprice', $shop->sprice) }}"
-    type="text"
-    >
     
     <label for="region">
       地域
@@ -61,7 +62,7 @@
     <label for="store_in">
       店内飲食
     </label>
-    <select name="store_in">
+    <select name="store_in" class="store_in">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
@@ -69,7 +70,7 @@
     <label for="take_out">
       テイクアウト
     </label>
-    <select name="take_out">
+    <select name="take_out" class="take_out">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
@@ -77,7 +78,7 @@
     <label for="delivery">
       デリバリー
     </label>
-    <select name="delivery">
+    <select name="delivery" class="delivery">
       <option value="あり">あり</option>
       <option value="なし">なし</option>
     </select>
@@ -146,7 +147,7 @@
             <a class="deleteTarget" id="deleteTarget" data-com-id="{{$com->id}}">
                 商品削除
             </a>
-          </div>
+          
           @foreach ($images as $imgs)
             @foreach ($imgs as $ima)
               @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
@@ -161,8 +162,9 @@
               @endif
             @endforeach
           @endforeach
-          
+          </div>
         @endforeach
+
           <div class="mt-5">
             <a class="btn btn-secondary" href="{{ action('ShopController@show', $shop->id) }}">
               キャンセル

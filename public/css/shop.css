@@ -282,6 +282,7 @@
 .wrap {
   width: 80px;
   margin: 0 auto;
+  padding-top: 20px;
 }
 
 #graydisplay {
@@ -379,6 +380,12 @@
   display: block;
 }
 
+.tab_btn {
+  background-color: orange;
+  color: black;
+  margin-right: 10px;
+}
+
 .oyas {
   display: flex;
   flex-direction: column;
@@ -387,6 +394,50 @@
   background: white;
   border-left: solid 6px #5bb7ae;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.336);
-  width: calc(100vw - 550px);
+  width: calc(100vw - 650px);
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+.shop-com-name {
+  width: 150px;
+}
+
+.card-words {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.card-word {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-word-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-word-store_in {
+  padding-right: 10px;
+}
+
+.card-word-take_out {
+  padding-right: 10px;
+}
+
+.card-bodyy {
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop-top-btn {
+  display: flex;
+  justify-content: space-between;
 }
 

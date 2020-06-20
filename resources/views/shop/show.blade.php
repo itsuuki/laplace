@@ -14,12 +14,17 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 {{ $shop->sname }}
-                                <a class="tab_btn is-active-btn" href="#item1">
-                                    お店の投稿一覧
-                                </a>
-                                <a class="tab_btn is-active-btn" href="#item2">
-                                    お店のレビュー一覧
-                                </a>
+                                <div class="shop-top-btn">
+                                    <button class="tab_btn is-active-btn" href="#item1">
+                                        詳細
+                                    </button>
+                                    <button class="tab_btn is-active-btn" href="#item2">
+                                        メニュー
+                                    </button>
+                                    <button class="tab_btn is-active-btn" href="#item3">
+                                        レビュー
+                                    </button>
+                                </div>
                             </div>
                             <div class="wrap">
                                 @if ($review === 0)
@@ -44,10 +49,35 @@
                                 <span class="rate rate5"></span>
                                 @endif
                             </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    平均金額{{ $shop->sprice }}円
-                                </p>
+                            <div class="tab_item is-active-item" id="item1">
+                            <div class="card-bodyy">
+                                <div class="card-words">
+                                    <div class="card-word">
+                                        <div class="card-word-price">
+                                            平均金額{{ $shop->sprice }}円
+                                        </div>
+                                        <div class="card-word-form">
+                                            <div class="card-word-store_in">
+                                                店内飲食 {{$shop->store_in}}
+                                            </div>
+                                            <div class="card-word-take_out">
+                                                テイクアウト {{$shop->take_out}}
+                                            </div>
+                                            <div class="card-word-delivery">
+                                                デリバリー {{$shop->delivery}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-word-photo">
+                                        電話番号 {{ $shop->photo}}
+                                    </div>
+                                    <div class="card-word-region">
+                                        住所: {{ $shop->region}}
+                                    </div>
+                                    <div class="card-word-datail">
+                                        店紹介 {{$shop->datail}}
+                                    </div>
+                                </div>
                                 @foreach ($images as $image)
                                     @if ($shop->id === $image->shop_id)
                                         <div class="card-bodys">
@@ -90,27 +120,34 @@
                                     @endif
                                 </div>
                             </div>
+                            </div>
                             
                             
                             <div>
                             <!-- <div class="review-comments"> -->
-                            <div class="tab_item is-active-item" id="item1">
+                            <div class="tab_item" id="item2">
                             @foreach ($commodity as $com)
                                 <div class="oyas">
                                 <label for="com-name">
                                 商品
                                 </label>
-                                {{$com->name}}
+                                <div class="shop-com-name">
+                                    {{$com->name}}
+                                </div>
 
                                 <label for="com-price">
                                 金額
                                 </label>
-                                {{$com->price}}円
+                                <div class="shop-com-price">
+                                    {{$com->price}}円
+                                </div>
 
                                 <label for="description">
                                     商品紹介
                                 </label>
-                                {{$com->description}}
+                                <div class="shop-com-description">
+                                    {{$com->description}}
+                                </div>
                                 <input type="hidden" name="num[]" value="{{$com->id}}">
                             
                             @foreach ($imgs as $imag)
@@ -127,7 +164,7 @@
                             </div>
 
 
-                            <div class="tab_item" id="item2">
+                            <div class="tab_item" id="item3">
                             <span class="review-comments">レビュー一覧</span>
                             @foreach ($reviews as $rev)
                                 <div class="review-comment">
