@@ -17,7 +17,10 @@
                   <a class="tab_btn" href="#item3">
                   お気に入り
                   </a></div>
-                <div class="accordion_header">A_b</div>
+                <div class="accordion_header">
+                <a class="user-edit" href="{{ Auth::user()->id }}/edit">
+                    登録を変更する
+                </a></div>
               </div>
             </div>
           </div>

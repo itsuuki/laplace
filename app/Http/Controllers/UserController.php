@@ -82,6 +82,34 @@ class UserController extends Controller
         return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'commodities' => $commodities, 'reservations' => $reservations, 'res_shops' => $res_shops, 'fav_shops' => $fav_shops]);
         // $commodities = Commodity::all();
     }
+    public function edit($id)
+    {
+        $users = User::findOrFail($id);
+        return view("user.edit", ['users' => $users]);
+    }
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:50',
+            'email' => 'email',
+            'uregion' => 'required|max:100',
+            'uphoto' => 'required | numeric | digits_between:8,11',
+        ],
+        [
+            'name.required' => '名前は必須です。',
+            'email.required' => 'メールアドレスは必須です。',
+            'uregion.required' => '住所は必須です。',
+            'uphoto.required' => '電話番号は必須です。',
+        ]);
+        $value = User::findOrFail($request->id);
+        $value->fill($request->all())->save();
+
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $shops = Shop::all();
+        $images = Image::all();
+        $user = User::all();
+        return view('post.index', ['posts' => $posts, 'shops' => $shops, 'images'=> $images, 'user'=>$user]);
+    }
 }
 // , 'shop'=> $shop
 // <a class="user-shop" href="/Show/{{ shop()->id }}">

@@ -23,6 +23,8 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/User/{$id}/edit', 'UserController@edit');
+Route::post('/User/update', 'UserController@update');
 Route::get('Shop/index', 'ShopController@index');
 Route::get('/User/Shop/create', 'ShopController@create');
 Route::get('/User/Shop/edit', 'ShopController@edit');
