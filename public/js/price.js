@@ -94,6 +94,11 @@
 /***/ (function(module, exports) {
 
 $(function () {
+  var buildFile = function buildFile() {
+    var html = "\n    <div class=\"people_form\">\n    <label for=\"comm-name\">\n        \u4EBA\u6570\n    </label>\n    <input\n    id=\"people\"\n    name=\"people\"\n    class=\"people\"\n    value=\"\"\n    type=\"text\"\n    >\n    </div>";
+    return html;
+  };
+
   $('.remark').on('keyup', function (e) {
     var str = $(this).val();
 
@@ -117,6 +122,15 @@ $(function () {
       }
 
       document.getElementById("total-price").innerHTML = total_price;
+    }
+  });
+  $('.select').change(function () {
+    var r = $('option:selected').val();
+
+    if (r === "店内") {
+      $('#people_input').append(buildFile()); // console.log(r);
+    } else {
+      $('.people_form').remove();
     }
   });
 });
