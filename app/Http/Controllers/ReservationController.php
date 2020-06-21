@@ -14,36 +14,48 @@ use App\User;
 
 use App\Reservation;
 
+use Carbon\Carbon;
+
 class ReservationController extends Controller
 {
     
 
     public function create($shop_id)
     {
+        $months = range(1, 12);
+        $days = range(1, 31);
+        $hours = range(0, 24);
+        $minutes = range(0, 60);
+        $shop = Shop::find($shop_id);
         $commodity = Commodity::where('shop_id', $shop_id)->get();
         $coms = $commodity->pluck('id');
         // echo var_dump($coms);
         $commodities = collect($commodity)->count();
         $image = Image::where('commodity_id', $coms)->get();
-        return view('reservation.create', ['image' => $image, 'commodity' => $commodity, 'shop_id' => $shop_id, 'commodities' => $commodities, 'coms' => $coms]);
+        return view('reservation.create', ['image' => $image, 'commodity' => $commodity, 'shop_id' => $shop_id, 'commodities' => $commodities, 'coms' => $coms, 'shop' => $shop, 'months' => $months, 'days' => $days, 'hours' => $hours, 'minutes' => $minutes]);
     }
 
     public function store(Request $request)
     {
-        // $req = $request->input('remark');
         $i = 0;
         foreach ($request->num as $val) {
             // echo var_dump($request->ids);
             $reser = new Reservation;
             $reser->remark = $request->remark[$i];
-            // $com->name = $request->name[$i];
+            $reser->form = $request->form;
+            $reser->month = $request->month;
+            $reser->day = $request->day;
+            $reser->hour = $request->hour;
+            $reser->minute = $request->minute;
             $reser->user_id = $request->user()->id;
             $reser->shop_id = $request->idsss;
             $reser->commodity_id = $request->ids[$i];
+            if ($request->people !== null) {
+                $reser->people = $request->people;
+            }
             $reser->save();
             $i++;
         }
-        // $reser->save();
         return redirect('/home');
     }
 

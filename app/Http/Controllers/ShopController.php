@@ -156,10 +156,12 @@ class ShopController extends Controller
         $i = 0;
         $value = Shop::findOrFail($request->id);
         $value->fill($request->all())->save();
-        $img = Image::find($request->id);
-        $img->image = $request->img->store('images');
-        $img->shop_id = $value->id;
-        $img->save();
+        if ($request->img !== null) {
+            $img = Image::find($request->id);
+            $img->image = $request->img->store('images');
+            $img->shop_id = $value->id;
+            $img->save();
+        }
         foreach ($request->num as $val) {
             $com = Commodity::find($val);
             $image= Image::find($val);
@@ -170,7 +172,7 @@ class ShopController extends Controller
             $com->user_id = $request->user()->id;
             $com->shop_id = $request->id;
             $com->save();
-            if ($request->img !== null) {
+            if ($request->image !== null) {
                 $image->image = $request->image[$i]->store('images');
                 $image->shop_id = $value->id;
                 $image->commodity_id = $com->id;
@@ -178,10 +180,24 @@ class ShopController extends Controller
             }
             $i++;
         }
-        $reviews = Review::all();
-        $review = Review::select('evaluation')->get();
-        $review = collect($review)->avg('evaluation');
-        return view('shop.show', ['shop' => $value, 'review' => $review, 'reviews' => $reviews]);
+        $shop = Shop::findOrFail($request->id);
+        $commodity = Commodity::where('shop_id', $request->id)->get();
+        $image = Image::where('shop_id', $request->id)->get();
+        $commodity_id = $commodity->pluck('id');
+        $imgs = array();
+        foreach ($commodity_id as $com_id) {
+            $img = Image::where('commodity_id', $com_id)->get();
+            array_push($imgs,$img);
+            // echo var_dump(Image::where('id', $com_id)->get());
+        }
+        $reviews = Review::where('shop_id', $request->id)->get();
+        $reviews->pluck('evaluation');
+        // $review = Review::select('evaluation')->get();
+        $review = collect($reviews)->avg('evaluation');
+        $users = User::all();
+        $images = Image::all();
+        $commodities = collect($commodity)->count();
+        return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'imgs' => $imgs]);
     }
 
     public function destroy($id)

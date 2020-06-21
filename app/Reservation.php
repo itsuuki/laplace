@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     protected $fillable = [
-        'remark',
+        'remark','form',
     ];
 
     public function images()

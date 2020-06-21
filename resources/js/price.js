@@ -1,4 +1,20 @@
 $(function() {
+  const buildFile = ()=> {
+    const html = `
+    <div class="people_form">
+    <label for="comm-name">
+        人数
+    </label>
+    <input
+    id="people"
+    name="people"
+    class="people"
+    value=""
+    type="text"
+    >
+    </div>`;
+    return html;
+  }
   $('.remark').on('keyup', function(e) {
     var str = $(this).val()
     if( str.match( /[^0-9.,-]+/ ) ) {
@@ -21,4 +37,14 @@ $(function() {
     document.getElementById("total-price").innerHTML = total_price;
     }
   });
+
+  $('.select').change(function(){
+    var r = $('option:selected').val();
+    if(r === "店内") {
+      $('#people_input').append(buildFile());
+      // console.log(r);
+    } else {
+      $('.people_form').remove();
+    }
+  })
 });
